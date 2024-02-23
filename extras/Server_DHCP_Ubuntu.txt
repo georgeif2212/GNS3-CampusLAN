@@ -1,0 +1,122 @@
+authoritative;
+
+#subnet server
+
+subnet 192.168.1.96 netmask 255.255.255.248{
+  range 192.168.1.98 192.168.1.101;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.102;
+  option broadcast-address 192.168.1.103;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+#subnet remotes
+
+subnet 192.168.1.88 netmask 255.255.255.248{
+  range 192.168.1.89 192.168.1.93;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.94;
+  option broadcast-address 192.168.1.95;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.80 netmask 255.255.255.248{
+  range 192.168.1.81 192.168.1.85;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.86;
+  option broadcast-address 192.168.1.87;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.72 netmask 255.255.255.248{
+  range 192.168.1.73 192.168.1.77;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.78;
+  option broadcast-address 192.168.1.79;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.64 netmask 255.255.255.248{
+  range 192.168.1.65 192.168.1.69;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.70;
+  option broadcast-address 192.168.1.71;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.56 netmask 255.255.255.248{
+  range 192.168.1.57 192.168.1.61;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.62;
+  option broadcast-address 192.168.1.63;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.48 netmask 255.255.255.248{
+  range 192.168.1.49 192.168.1.53;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.54;
+  option broadcast-address 192.168.1.55;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.40 netmask 255.255.255.248{
+  range 192.168.1.41 192.168.1.45;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.46;
+  option broadcast-address 192.168.1.47;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.32 netmask 255.255.255.248{
+  range 192.168.1.33 192.168.1.37;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.38;
+  option broadcast-address 192.168.1.39;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.24 netmask 255.255.255.248{
+  range 192.168.1.25 192.168.1.29;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.30;
+  option broadcast-address 192.168.1.31;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.16 netmask 255.255.255.248{
+  range 192.168.1.17 192.168.1.21;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.22;
+  option broadcast-address 192.168.1.23;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.8 netmask 255.255.255.248{
+  range 192.168.1.9 192.168.1.13;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.14;
+  option broadcast-address 192.168.1.15;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
+
+subnet 192.168.1.0 netmask 255.255.255.248{
+  range 192.168.1.1 192.168.1.5;
+  option subnet-mask 255.255.255.248;
+  option routers 192.168.1.6;
+  option broadcast-address 192.168.1.7;
+  default-lease-time 600;
+  max-lease-time 7200;
+}
