@@ -1,0 +1,32 @@
+Feb 14 13:19:41.605 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Feb 14 13:19:41.606 HYPERVISOR: Started on IP = localhost, TCP port = 56914.
+Feb 14 13:19:42.078 HYPERVISOR: exec_cmd: hypervisor version 
+Feb 14 13:19:42.079 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Feb 14 13:19:42.079 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Feb 14 13:19:42.080 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\8d9de123-3eb8-484f-a564-445e61fba17f 
+Feb 14 13:19:42.082 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\8d9de123-3eb8-484f-a564-445e61fba17f
+Feb 14 13:19:42.083 HYPERVISOR: exec_cmd: vm create R7 7 c7200 
+Feb 14 13:19:42.084 VM: VM R7 created.
+Feb 14 13:19:42.086 HYPERVISOR: exec_cmd: vm set_con_tcp_port R7 5038 
+Feb 14 13:19:42.086 HYPERVISOR: exec_cmd: c7200 get_mac_addr R7 
+Feb 14 13:19:42.086 HYPERVISOR: exec_cmd: vm get_status R7 
+Feb 14 13:19:42.087 HYPERVISOR: exec_cmd: vm slot_add_binding R7 0 0 C7200-IO-FE 
+Feb 14 13:19:42.087 HYPERVISOR: exec_cmd: vm set_disk0 R7 0 
+Feb 14 13:19:42.088 HYPERVISOR: exec_cmd: vm set_exec_area R7 64 
+Feb 14 13:19:42.090 HYPERVISOR: exec_cmd: vm set_ios R7 C:/Users/jinfa/GNS3/images/IOS/c7200-adventerprisek9-mz.153-3.XB12.image 
+Feb 14 13:19:42.090 HYPERVISOR: exec_cmd: c7200 set_mac_addr R7 ca07.29ec.0000 
+Feb 14 13:19:42.091 HYPERVISOR: exec_cmd: vm set_nvram R7 512 
+Feb 14 13:19:42.092 HYPERVISOR: exec_cmd: vm set_ram R7 512 
+Feb 14 13:19:42.093 HYPERVISOR: exec_cmd: vm get_status R7 
+Feb 14 13:19:42.093 HYPERVISOR: exec_cmd: vm slot_add_binding R7 1 0 PA-GE 
+Feb 14 13:19:42.094 HYPERVISOR: exec_cmd: vm get_status R7 
+Feb 14 13:19:42.095 HYPERVISOR: exec_cmd: vm slot_add_binding R7 2 0 PA-GE 
+Feb 14 13:19:42.096 HYPERVISOR: exec_cmd: vm get_status R7 
+Feb 14 13:19:42.096 HYPERVISOR: exec_cmd: vm slot_add_binding R7 3 0 PA-GE 
+Feb 14 13:20:37.127 HYPERVISOR: exec_cmd: vm get_status R7 
+Feb 14 13:20:37.201 HYPERVISOR: exec_cmd: vm extract_config R7 
+Feb 14 13:20:37.220 HYPERVISOR: exec_cmd: vm delete R7 
+Feb 14 13:20:37.221 VM: VM R7 destroyed.
+Feb 14 13:20:37.236 HYPERVISOR: exec_cmd: hypervisor stop 
+Feb 14 13:20:37.359 HYPERVISOR: Stopped.
+Feb 14 13:20:37.359 GENERAL: reset done.

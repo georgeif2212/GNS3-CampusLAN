@@ -1,0 +1,71 @@
+Dec 19 21:12:24.277 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Dec 19 21:12:24.278 HYPERVISOR: Started on IP = localhost, TCP port = 50367.
+Dec 19 21:12:24.775 HYPERVISOR: exec_cmd: hypervisor version 
+Dec 19 21:12:24.775 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Dec 19 21:12:24.776 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Dec 19 21:12:24.776 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\065feb74-749c-4d62-9b37-c8d97226ab7f 
+Dec 19 21:12:24.776 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\065feb74-749c-4d62-9b37-c8d97226ab7f
+Dec 19 21:12:24.776 HYPERVISOR: exec_cmd: vm create R2 2 c7200 
+Dec 19 21:12:24.784 VM: VM R2 created.
+Dec 19 21:12:24.785 HYPERVISOR: exec_cmd: vm set_con_tcp_port R2 5013 
+Dec 19 21:12:24.785 HYPERVISOR: exec_cmd: c7200 get_mac_addr R2 
+Dec 19 21:12:24.786 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:12:24.786 HYPERVISOR: exec_cmd: vm slot_add_binding R2 0 0 C7200-IO-FE 
+Dec 19 21:12:24.786 HYPERVISOR: exec_cmd: vm set_disk0 R2 0 
+Dec 19 21:12:24.787 HYPERVISOR: exec_cmd: vm set_exec_area R2 64 
+Dec 19 21:12:24.789 HYPERVISOR: exec_cmd: vm set_ios R2 C:/Users/jinfa/GNS3/images/IOS/c7200-adventerprisek9-mz.153-3.XB12.image 
+Dec 19 21:12:24.790 HYPERVISOR: exec_cmd: c7200 set_mac_addr R2 ca02.3d28.0000 
+Dec 19 21:12:24.790 HYPERVISOR: exec_cmd: vm set_nvram R2 512 
+Dec 19 21:12:24.791 HYPERVISOR: exec_cmd: vm set_ram R2 512 
+Dec 19 21:12:24.792 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:12:24.792 HYPERVISOR: exec_cmd: vm slot_add_binding R2 1 0 PA-GE 
+Dec 19 21:12:24.792 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:12:24.793 HYPERVISOR: exec_cmd: vm slot_add_binding R2 2 0 PA-GE 
+Dec 19 21:12:24.793 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:12:24.793 HYPERVISOR: exec_cmd: vm slot_add_binding R2 3 0 PA-GE 
+Dec 19 21:12:31.194 HYPERVISOR: exec_cmd: nio create_udp udp-1b291116-31e2-45ac-8bc4-d8415512d249 10008 127.0.0.1 10009 
+Dec 19 21:12:31.542 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 0 0 udp-1b291116-31e2-45ac-8bc4-d8415512d249 
+Dec 19 21:12:31.543 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:12:33.448 HYPERVISOR: exec_cmd: nio create_udp udp-f135387d-549b-4fe6-9ded-1515a9eb988c 10042 127.0.0.1 10043 
+Dec 19 21:12:33.450 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 2 0 udp-f135387d-549b-4fe6-9ded-1515a9eb988c 
+Dec 19 21:12:33.450 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:12:34.068 HYPERVISOR: exec_cmd: nio create_udp udp-35d72989-ea07-4d19-9223-a75bfd312579 10072 127.0.0.1 10073 
+Dec 19 21:12:34.071 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R2 3 0 udp-35d72989-ea07-4d19-9223-a75bfd312579 
+Dec 19 21:12:34.071 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:26:13.376 HYPERVISOR: exec_cmd: vm set_ghost_status R2 2 
+Dec 19 21:26:13.376 HYPERVISOR: exec_cmd: vm set_ghost_file R2 C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\c7200-adventerprisek9-mz.153-3.XB12.image-512.ghost 
+Dec 19 21:26:13.376 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:26:13.383 HYPERVISOR: exec_cmd: vm set_config R2 configs\i2_startup-config.cfg 
+Dec 19 21:26:13.384 HYPERVISOR: exec_cmd: vm start R2 
+Dec 19 21:28:43.744 HYPERVISOR: exec_cmd: vm extract_config R2 
+Dec 19 21:29:03.319 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:29:03.320 HYPERVISOR: exec_cmd: vm stop R2 
+Dec 19 21:29:03.497 VM: VM R2 shutdown.
+Dec 19 21:29:03.498 HYPERVISOR: exec_cmd: vm extract_config R2 
+Dec 19 21:48:02.950 HYPERVISOR: exec_cmd: vm set_ghost_status R2 2 
+Dec 19 21:48:02.951 HYPERVISOR: exec_cmd: vm set_ghost_file R2 C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\c7200-adventerprisek9-mz.153-3.XB12.image-512.ghost 
+Dec 19 21:48:02.952 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:48:02.958 HYPERVISOR: exec_cmd: vm set_config R2 configs\i2_startup-config.cfg 
+Dec 19 21:48:02.959 HYPERVISOR: exec_cmd: vm start R2 
+Dec 19 21:59:29.849 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 21:59:29.850 HYPERVISOR: exec_cmd: vm stop R2 
+Dec 19 21:59:30.072 VM: VM R2 shutdown.
+Dec 19 21:59:30.073 HYPERVISOR: exec_cmd: vm extract_config R2 
+Dec 19 22:09:48.979 HYPERVISOR: exec_cmd: vm set_ghost_status R2 2 
+Dec 19 22:09:48.980 HYPERVISOR: exec_cmd: vm set_ghost_file R2 C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\c7200-adventerprisek9-mz.153-3.XB12.image-512.ghost 
+Dec 19 22:09:48.981 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 22:09:48.987 HYPERVISOR: exec_cmd: vm set_config R2 configs\i2_startup-config.cfg 
+Dec 19 22:09:48.988 HYPERVISOR: exec_cmd: vm start R2 
+Dec 19 22:17:20.051 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 22:17:20.052 HYPERVISOR: exec_cmd: vm stop R2 
+Dec 19 22:17:20.184 VM: VM R2 shutdown.
+Dec 19 22:17:20.187 HYPERVISOR: exec_cmd: vm extract_config R2 
+Dec 19 23:33:55.188 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 23:33:55.190 HYPERVISOR: exec_cmd: vm extract_config R2 
+Dec 19 23:33:55.635 HYPERVISOR: exec_cmd: vm get_status R2 
+Dec 19 23:33:55.636 HYPERVISOR: exec_cmd: vm extract_config R2 
+Dec 19 23:33:55.638 HYPERVISOR: exec_cmd: vm delete R2 
+Dec 19 23:33:55.638 VM: VM R2 destroyed.
+Dec 19 23:33:55.640 HYPERVISOR: exec_cmd: hypervisor stop 
+Dec 19 23:33:55.747 HYPERVISOR: Stopped.
+Dec 19 23:33:55.748 GENERAL: reset done.

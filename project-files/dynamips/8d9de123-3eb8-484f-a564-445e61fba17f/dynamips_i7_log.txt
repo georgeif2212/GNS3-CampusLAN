@@ -1,0 +1,25 @@
+Jan 08 21:09:12.795 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Jan 08 21:09:12.796 HYPERVISOR: Started on IP = localhost, TCP port = 49954.
+Jan 08 21:09:13.310 HYPERVISOR: exec_cmd: hypervisor version 
+Jan 08 21:09:13.311 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Jan 08 21:09:13.311 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Jan 08 21:09:13.312 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\8d9de123-3eb8-484f-a564-445e61fba17f 
+Jan 08 21:09:13.312 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\8d9de123-3eb8-484f-a564-445e61fba17f
+Jan 08 21:09:13.312 HYPERVISOR: exec_cmd: vm create R7 7 c7200 
+Jan 08 21:09:13.314 VM: VM R7 created.
+Jan 08 21:09:13.315 HYPERVISOR: exec_cmd: vm set_con_tcp_port R7 5038 
+Jan 08 21:09:13.315 HYPERVISOR: exec_cmd: c7200 get_mac_addr R7 
+Jan 08 21:09:13.315 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 08 21:09:13.315 HYPERVISOR: exec_cmd: vm slot_add_binding R7 0 0 C7200-IO-FE 
+Jan 08 21:09:13.316 HYPERVISOR: exec_cmd: vm set_disk0 R7 0 
+Jan 08 21:09:13.317 HYPERVISOR: exec_cmd: vm set_exec_area R7 64 
+Jan 08 21:09:13.319 HYPERVISOR: exec_cmd: vm set_ios R7 C:/Users/jinfa/GNS3/images/IOS/c7200-adventerprisek9-mz.153-3.XB12.image 
+Jan 08 21:09:13.320 HYPERVISOR: exec_cmd: c7200 set_mac_addr R7 ca07.29ec.0000 
+Jan 08 21:09:13.321 HYPERVISOR: exec_cmd: vm set_nvram R7 512 
+Jan 08 21:09:13.322 HYPERVISOR: exec_cmd: vm set_ram R7 512 
+Jan 08 21:09:13.323 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 08 21:09:13.323 HYPERVISOR: exec_cmd: vm slot_add_binding R7 1 0 PA-GE 
+Jan 08 21:09:13.324 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 08 21:09:13.325 HYPERVISOR: exec_cmd: vm slot_add_binding R7 2 0 PA-GE 
+Jan 08 21:09:13.326 HYPERVISOR: exec_cmd: vm get_status R7 
+Jan 08 21:09:13.326 HYPERVISOR: exec_cmd: vm slot_add_binding R7 3 0 PA-GE 

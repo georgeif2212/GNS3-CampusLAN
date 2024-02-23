@@ -1,0 +1,22 @@
+Dec 19 21:12:23.043 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Dec 19 21:12:23.043 HYPERVISOR: Started on IP = localhost, TCP port = 50359.
+Dec 19 21:12:23.541 HYPERVISOR: exec_cmd: hypervisor version 
+Dec 19 21:12:23.542 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Dec 19 21:12:23.547 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Dec 19 21:12:23.547 HYPERVISOR: exec_cmd: ethsw create Switch3 
+Dec 19 21:12:30.988 HYPERVISOR: exec_cmd: nio create_udp udp-b141e813-4e7f-4c9a-a577-ef6fd8e9a56b 10001 127.0.0.1 10000 
+Dec 19 21:12:30.998 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-b141e813-4e7f-4c9a-a577-ef6fd8e9a56b 
+Dec 19 21:12:31.008 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-b141e813-4e7f-4c9a-a577-ef6fd8e9a56b 10 
+Dec 19 21:12:31.553 HYPERVISOR: exec_cmd: nio create_udp udp-981cb857-085d-4648-ba1c-1e4c5d2ab9e5 10007 127.0.0.1 10006 
+Dec 19 21:12:31.553 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-981cb857-085d-4648-ba1c-1e4c5d2ab9e5 
+Dec 19 21:12:31.570 HYPERVISOR: exec_cmd: ethsw set_dot1q_port Switch3 udp-981cb857-085d-4648-ba1c-1e4c5d2ab9e5 1 
+Dec 19 21:12:34.797 HYPERVISOR: exec_cmd: nio create_udp udp-17edb4b0-d611-4857-8dbd-05751b0d6818 10104 127.0.0.1 10105 
+Dec 19 21:12:34.797 HYPERVISOR: exec_cmd: ethsw add_nio Switch3 udp-17edb4b0-d611-4857-8dbd-05751b0d6818 
+Dec 19 21:12:34.823 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-17edb4b0-d611-4857-8dbd-05751b0d6818 20 
+Dec 19 21:14:12.386 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-b141e813-4e7f-4c9a-a577-ef6fd8e9a56b 10 
+Dec 19 21:14:12.387 HYPERVISOR: exec_cmd: ethsw set_dot1q_port Switch3 udp-981cb857-085d-4648-ba1c-1e4c5d2ab9e5 1 
+Dec 19 21:14:12.388 HYPERVISOR: exec_cmd: ethsw set_access_port Switch3 udp-17edb4b0-d611-4857-8dbd-05751b0d6818 20 
+Dec 19 23:33:55.304 HYPERVISOR: exec_cmd: ethsw delete Switch3 
+Dec 19 23:33:55.395 HYPERVISOR: exec_cmd: hypervisor stop 
+Dec 19 23:33:55.747 HYPERVISOR: Stopped.
+Dec 19 23:33:55.748 GENERAL: reset done.
