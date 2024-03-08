@@ -182,7 +182,7 @@
                 "drawing_id": "26afff75-7a55-4589-994b-4a377c70c2d5",
                 "locked": false,
                 "rotation": -20,
-                "svg": "<svg width=\"154\" height=\"29\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">192.168.10.0/30</text></svg>",
+                "svg": "<svg width=\"116\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">192.168.10.0/30</text></svg>",
                 "x": -652,
                 "y": 112,
                 "z": 2
@@ -191,7 +191,7 @@
                 "drawing_id": "32595b09-601e-4b2c-8b16-31abae4d9bb4",
                 "locked": false,
                 "rotation": -11,
-                "svg": "<svg width=\"154\" height=\"29\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">192.168.10.4/30</text></svg>",
+                "svg": "<svg width=\"116\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">192.168.10.4/30</text></svg>",
                 "x": -647,
                 "y": 137,
                 "z": 2
@@ -2685,7 +2685,7 @@
                     "console_http_path": "/",
                     "console_http_port": 80,
                     "console_resolution": "1024x768",
-                    "container_id": "6253c2bf6a465dedadf38de2263bd117659732b73885960f3e76955b6119dc0a",
+                    "container_id": "d993b9ce6e1946a88af99d60c54314e461ed6cf44f881cd617087878ffe2fae5",
                     "environment": "",
                     "extra_hosts": "",
                     "extra_volumes": [
@@ -2720,80 +2720,11 @@
                 "x": -912,
                 "y": -257,
                 "z": 1
-            },
-            {
-                "compute_id": "495f7846-c6bf-4122-a08e-ebde8232f9ab",
-                "console": 5000,
-                "console_auto_start": false,
-                "console_type": "telnet",
-                "custom_adapters": [],
-                "first_port_name": null,
-                "height": 45,
-                "label": {
-                    "rotation": 0,
-                    "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
-                    "text": "R3",
-                    "x": 20,
-                    "y": -25
-                },
-                "locked": false,
-                "name": "R3",
-                "node_id": "3f24d9a3-8cec-4f5b-a747-1a093972af89",
-                "node_type": "dynamips",
-                "port_name_format": "Ethernet{0}",
-                "port_segment_size": 0,
-                "properties": {
-                    "auto_delete_disks": false,
-                    "aux": null,
-                    "clock_divisor": 4,
-                    "disk0": 0,
-                    "disk1": 0,
-                    "dynamips_id": 1,
-                    "exec_area": 64,
-                    "idlemax": 500,
-                    "idlepc": "",
-                    "idlesleep": 30,
-                    "image": "c7200-adventerprisek9-mz.153-3.XB12.image",
-                    "image_md5sum": "2f9885e88eab5705dd4da9f970e2c5f9",
-                    "mac_addr": "ca01.f72b.0000",
-                    "midplane": "vxr",
-                    "mmap": true,
-                    "npe": "npe-400",
-                    "nvram": 512,
-                    "platform": "c7200",
-                    "power_supplies": [
-                        1,
-                        1
-                    ],
-                    "ram": 512,
-                    "sensors": [
-                        22,
-                        22,
-                        22,
-                        22
-                    ],
-                    "slot0": "C7200-IO-FE",
-                    "slot1": null,
-                    "slot2": null,
-                    "slot3": null,
-                    "slot4": null,
-                    "slot5": null,
-                    "slot6": null,
-                    "sparsemem": true,
-                    "system_id": "FTX0945W0MY",
-                    "usage": ""
-                },
-                "symbol": ":/symbols/classic/router.svg",
-                "template_id": "a0dfd6cb-90d6-4e28-9943-a299d53bfc70",
-                "width": 66,
-                "x": -652,
-                "y": 22,
-                "z": 1
             }
         ]
     },
     "type": "topology",
     "variables": null,
     "version": "2.2.44.1",
-    "zoom": 59
+    "zoom": 25
 }
