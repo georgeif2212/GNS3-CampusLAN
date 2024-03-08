@@ -1,0 +1,41 @@
+Mar 08 10:26:51.186 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Mar 08 10:26:51.187 HYPERVISOR: Started on IP = localhost, TCP port = 51118.
+Mar 08 10:26:51.672 HYPERVISOR: exec_cmd: hypervisor version 
+Mar 08 10:26:51.673 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Mar 08 10:26:51.674 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Mar 08 10:26:51.674 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\6081e5f9-b6b5-4789-a857-215e468b2012 
+Mar 08 10:26:51.680 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\6081e5f9-b6b5-4789-a857-215e468b2012
+Mar 08 10:26:51.680 HYPERVISOR: exec_cmd: vm create R4 4 c7200 
+Mar 08 10:26:51.682 VM: VM R4 created.
+Mar 08 10:26:51.682 HYPERVISOR: exec_cmd: vm set_con_tcp_port R4 5027 
+Mar 08 10:26:51.682 HYPERVISOR: exec_cmd: c7200 get_mac_addr R4 
+Mar 08 10:26:51.683 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:26:51.683 HYPERVISOR: exec_cmd: vm slot_add_binding R4 0 0 C7200-IO-FE 
+Mar 08 10:26:51.683 HYPERVISOR: exec_cmd: vm set_disk0 R4 0 
+Mar 08 10:26:51.684 HYPERVISOR: exec_cmd: vm set_exec_area R4 64 
+Mar 08 10:26:51.685 HYPERVISOR: exec_cmd: vm set_ios R4 C:/Users/jinfa/GNS3/images/IOS/c7200-adventerprisek9-mz.153-3.XB12.image 
+Mar 08 10:26:51.686 HYPERVISOR: exec_cmd: c7200 set_mac_addr R4 ca04.1d34.0000 
+Mar 08 10:26:51.686 HYPERVISOR: exec_cmd: vm set_nvram R4 512 
+Mar 08 10:26:51.687 HYPERVISOR: exec_cmd: vm set_ram R4 512 
+Mar 08 10:26:51.687 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:26:51.687 HYPERVISOR: exec_cmd: vm slot_add_binding R4 1 0 PA-GE 
+Mar 08 10:26:51.688 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:26:51.689 HYPERVISOR: exec_cmd: vm slot_add_binding R4 2 0 PA-GE 
+Mar 08 10:26:51.690 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:26:51.690 HYPERVISOR: exec_cmd: vm slot_add_binding R4 3 0 PA-GE 
+Mar 08 10:26:51.690 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:26:51.690 HYPERVISOR: exec_cmd: vm slot_add_binding R4 4 0 PA-GE 
+Mar 08 10:26:51.691 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:26:51.691 HYPERVISOR: exec_cmd: vm slot_add_binding R4 5 0 PA-GE 
+Mar 08 10:27:52.117 HYPERVISOR: exec_cmd: nio create_udp udp-bb4fd643-4488-464d-aaa2-2d87eb7e10b9 10012 127.0.0.1 10013 
+Mar 08 10:27:52.416 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R4 0 0 udp-bb4fd643-4488-464d-aaa2-2d87eb7e10b9 
+Mar 08 10:27:52.417 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:27:55.186 HYPERVISOR: exec_cmd: nio create_udp udp-a62b6327-a99a-4061-b616-9b9f0d1e84a6 10048 127.0.0.1 10049 
+Mar 08 10:27:55.193 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R4 2 0 udp-a62b6327-a99a-4061-b616-9b9f0d1e84a6 
+Mar 08 10:27:55.194 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:27:56.112 HYPERVISOR: exec_cmd: nio create_udp udp-e7cd5537-38e3-4ea7-aa0e-869c97a5165e 10066 127.0.0.1 10067 
+Mar 08 10:27:56.117 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R4 3 0 udp-e7cd5537-38e3-4ea7-aa0e-869c97a5165e 
+Mar 08 10:27:56.119 HYPERVISOR: exec_cmd: vm get_status R4 
+Mar 08 10:27:56.941 HYPERVISOR: exec_cmd: nio create_udp udp-ad8a7b43-f41a-4b84-abcc-7ce91e8c38d5 10088 127.0.0.1 10089 
+Mar 08 10:27:56.947 HYPERVISOR: exec_cmd: vm slot_add_nio_binding R4 4 0 udp-ad8a7b43-f41a-4b84-abcc-7ce91e8c38d5 
+Mar 08 10:27:56.948 HYPERVISOR: exec_cmd: vm get_status R4 
