@@ -4,6 +4,8 @@
   "description": "Backend server to communicate with emulation server and SQL Server",
   "main": "app.js",
   "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon .",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -14,8 +16,8 @@
     "backend",
     "node",
     "express",
-    "sql",
-    "server",
+    "sql server",
+    "Campus LAN",
     "gns3"
   ],
   "author": "Jorge Infante",
