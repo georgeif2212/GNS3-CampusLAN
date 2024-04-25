@@ -1,3 +1,5 @@
 # Topología Campus LAN de 3 capas
 
-![Alt text](/topology/extras/images/Topology.jpeg"a title")
+La siguiente topología es una campus LAN de 3 capas acceso, distribución y núcleo.
+
+![Diagrama de la topología de red utilizada en este proyecto](/topology/extras/images/Topology.jpeg "Topología Campus LAN")
