@@ -1,0 +1,45 @@
+Mar 26 13:11:31.476 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Mar 26 13:11:31.477 HYPERVISOR: Started on IP = localhost, TCP port = 49888.
+Mar 26 13:11:31.969 HYPERVISOR: exec_cmd: hypervisor version 
+Mar 26 13:11:31.970 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Mar 26 13:11:31.970 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Mar 26 13:11:31.970 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\fd2f7489-e6cf-4f1d-aacf-202401a00ca5 
+Mar 26 13:11:31.970 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips\fd2f7489-e6cf-4f1d-aacf-202401a00ca5
+Mar 26 13:11:31.972 HYPERVISOR: exec_cmd: vm create ESW1 9 c3600 
+Mar 26 13:11:31.973 VM: VM ESW1 created.
+Mar 26 13:11:31.974 HYPERVISOR: exec_cmd: vm set_con_tcp_port ESW1 5045 
+Mar 26 13:11:31.974 HYPERVISOR: exec_cmd: c3600 get_mac_addr ESW1 
+Mar 26 13:11:31.974 HYPERVISOR: exec_cmd: vm set_disk0 ESW1 1 
+Mar 26 13:11:31.975 HYPERVISOR: exec_cmd: vm set_exec_area ESW1 64 
+Mar 26 13:11:31.976 HYPERVISOR: exec_cmd: vm set_ios ESW1 C:/Users/jinfa/GNS3/images/IOS/c3640-a3js-mz.124-25d.image 
+Mar 26 13:11:31.977 HYPERVISOR: exec_cmd: c3600 set_mac_addr ESW1 cc09.37c8.0000 
+Mar 26 13:11:31.978 HYPERVISOR: exec_cmd: vm set_nvram ESW1 256 
+Mar 26 13:11:31.979 HYPERVISOR: exec_cmd: vm set_ram ESW1 192 
+Mar 26 13:11:31.979 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:11:31.979 HYPERVISOR: exec_cmd: vm slot_add_binding ESW1 0 0 NM-1E 
+Mar 26 13:11:31.980 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:11:31.980 HYPERVISOR: exec_cmd: vm slot_add_binding ESW1 1 0 NM-16ESW 
+Mar 26 13:11:31.981 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:11:31.982 HYPERVISOR: exec_cmd: vm slot_add_binding ESW1 2 0 NM-1E 
+Mar 26 13:11:31.982 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:11:31.983 HYPERVISOR: exec_cmd: vm slot_add_binding ESW1 3 0 NM-1E 
+Mar 26 13:12:29.722 HYPERVISOR: exec_cmd: nio create_udp udp-a628305e-cb26-41d2-8824-eeecc50dc047 10030 127.0.0.1 10031 
+Mar 26 13:12:29.973 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 0 0 udp-a628305e-cb26-41d2-8824-eeecc50dc047 
+Mar 26 13:12:29.975 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:12:30.347 HYPERVISOR: exec_cmd: nio create_udp udp-af29f935-0487-4fd0-88fe-2bf3eea51520 10036 127.0.0.1 10037 
+Mar 26 13:12:30.352 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 0 udp-af29f935-0487-4fd0-88fe-2bf3eea51520 
+Mar 26 13:12:30.353 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:12:30.455 HYPERVISOR: exec_cmd: nio create_udp udp-a526f1e4-50c7-44a3-a106-253a5ed3f8f9 10040 127.0.0.1 10041 
+Mar 26 13:12:30.461 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 1 udp-a526f1e4-50c7-44a3-a106-253a5ed3f8f9 
+Mar 26 13:12:30.462 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:12:30.536 HYPERVISOR: exec_cmd: nio create_udp udp-2a4d96f6-b759-4712-8b57-1e020c04d124 10046 127.0.0.1 10047 
+Mar 26 13:12:30.539 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 2 udp-2a4d96f6-b759-4712-8b57-1e020c04d124 
+Mar 26 13:12:30.539 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:12:31.261 HYPERVISOR: exec_cmd: nio create_udp udp-2c4dcdfd-dea7-48ac-a9ee-44726e988f2c 10084 127.0.0.1 10085 
+Mar 26 13:12:31.263 HYPERVISOR: exec_cmd: vm slot_add_nio_binding ESW1 1 4 udp-2c4dcdfd-dea7-48ac-a9ee-44726e988f2c 
+Mar 26 13:12:31.264 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:20:15.832 HYPERVISOR: exec_cmd: vm get_status ESW1 
+Mar 26 13:20:15.833 HYPERVISOR: exec_cmd: vm extract_config ESW1 
+Mar 26 13:20:26.660 HYPERVISOR: Stopped.
+Mar 26 13:20:26.661 VM: VM ESW1 destroyed.
+Mar 26 13:20:26.663 GENERAL: reset done.

@@ -1,0 +1,17 @@
+Mar 26 13:11:27.579 HYPERVISOR: Release 0.2.17-x86/Windows (tag 2017072410)
+Mar 26 13:11:27.579 HYPERVISOR: Started on IP = localhost, TCP port = 49835.
+Mar 26 13:11:28.074 HYPERVISOR: exec_cmd: hypervisor version 
+Mar 26 13:11:28.075 HYPERVISOR: exec_cmd: hypervisor working_dir C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips 
+Mar 26 13:11:28.075 GENERAL: working_dir=C:\Users\jinfa\GNS3\projects\LAN_CAMPUS\project-files\dynamips
+Mar 26 13:11:28.075 HYPERVISOR: exec_cmd: ethsw create Switch7 
+Mar 26 13:12:27.487 HYPERVISOR: exec_cmd: nio create_udp udp-8eeae015-b0ce-4d9d-839e-c9ea186f237b 10005 127.0.0.1 10004 
+Mar 26 13:12:27.488 HYPERVISOR: exec_cmd: ethsw add_nio Switch7 udp-8eeae015-b0ce-4d9d-839e-c9ea186f237b 
+Mar 26 13:12:27.517 HYPERVISOR: exec_cmd: ethsw set_access_port Switch7 udp-8eeae015-b0ce-4d9d-839e-c9ea186f237b 10 
+Mar 26 13:12:31.323 HYPERVISOR: exec_cmd: nio create_udp udp-eacc3ec5-fed7-40a7-a5c3-e286ded04ad9 10086 127.0.0.1 10087 
+Mar 26 13:12:31.323 HYPERVISOR: exec_cmd: ethsw add_nio Switch7 udp-eacc3ec5-fed7-40a7-a5c3-e286ded04ad9 
+Mar 26 13:12:31.348 HYPERVISOR: exec_cmd: ethsw set_dot1q_port Switch7 udp-eacc3ec5-fed7-40a7-a5c3-e286ded04ad9 1 
+Mar 26 13:12:31.548 HYPERVISOR: exec_cmd: nio create_udp udp-4b2e1d52-2841-47cd-a197-b83f1a229883 10092 127.0.0.1 10093 
+Mar 26 13:12:31.548 HYPERVISOR: exec_cmd: ethsw add_nio Switch7 udp-4b2e1d52-2841-47cd-a197-b83f1a229883 
+Mar 26 13:12:31.563 HYPERVISOR: exec_cmd: ethsw set_access_port Switch7 udp-4b2e1d52-2841-47cd-a197-b83f1a229883 20 
+Mar 26 13:20:26.660 HYPERVISOR: Stopped.
+Mar 26 13:20:26.732 GENERAL: reset done.
