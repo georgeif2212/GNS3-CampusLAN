@@ -1,0 +1,27 @@
+{
+  "name": "lan_campus",
+  "version": "1.0.0",
+  "description": "Backend server to communicate with emulation server and SQL Server",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/georgeif2212/GNS3-CampusLAN.git"
+  },
+  "keywords": [
+    "backend",
+    "node",
+    "express",
+    "sql",
+    "server",
+    "gns3"
+  ],
+  "author": "Jorge Infante",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/georgeif2212/GNS3-CampusLAN/issues"
+  },
+  "homepage": "https://github.com/georgeif2212/GNS3-CampusLAN#readme"
+}
