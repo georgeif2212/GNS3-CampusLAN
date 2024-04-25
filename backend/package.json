@@ -2,7 +2,8 @@
   "name": "lan_campus",
   "version": "1.0.0",
   "description": "Backend server to communicate with emulation server and SQL Server",
-  "main": "app.js",
+  "main": "src/server.js",
+  "type": "module",
   "scripts": {
     "start": "node src/app.js",
     "dev": "nodemon .",
