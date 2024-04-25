@@ -29,5 +29,8 @@
   "homepage": "https://github.com/georgeif2212/GNS3-CampusLAN#readme",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.5"
   }
 }
