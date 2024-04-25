@@ -15,15 +15,7 @@
     "snap_to_grid": false,
     "supplier": null,
     "topology": {
-        "computes": [
-            {
-                "compute_id": "495f7846-c6bf-4122-a08e-ebde8232f9ab",
-                "host": "172.30.3.129",
-                "name": "GNS3SERVER",
-                "port": 3080,
-                "protocol": "http"
-            }
-        ],
+        "computes": [],
         "drawings": [
             {
                 "drawing_id": "e3dac120-3841-4c35-b6a3-2dab79348ace",
@@ -101,7 +93,7 @@
                 "drawing_id": "7a0ab823-88c9-4753-8509-76619e02174f",
                 "locked": false,
                 "rotation": 0,
-                "svg": "<svg width=\"154\" height=\"29\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">192.168.1.32/29</text></svg>",
+                "svg": "<svg width=\"116\" height=\"24\"><text font-family=\"TypeWriter\" font-size=\"10.0\" font-weight=\"bold\" fill=\"#000000\" fill-opacity=\"1.0\">192.168.1.32/29</text></svg>",
                 "x": -225,
                 "y": 241,
                 "z": 2
@@ -1818,8 +1810,8 @@
                     "rotation": 0,
                     "style": "font-family: TypeWriter;font-size: 10.0;font-weight: bold;fill: #000000;fill-opacity: 1.0;",
                     "text": "Switch5",
-                    "x": -3,
-                    "y": -25
+                    "x": -31,
+                    "y": -33
                 },
                 "locked": false,
                 "name": "Switch5",
@@ -2685,7 +2677,7 @@
                     "console_http_path": "/",
                     "console_http_port": 80,
                     "console_resolution": "1024x768",
-                    "container_id": "d993b9ce6e1946a88af99d60c54314e461ed6cf44f881cd617087878ffe2fae5",
+                    "container_id": "89d451d023de95cf321ccd2fe256be6db2ff2026c5c7b201a94d2db72f94b800",
                     "environment": "",
                     "extra_hosts": "",
                     "extra_volumes": [
@@ -2726,5 +2718,5 @@
     "type": "topology",
     "variables": null,
     "version": "2.2.44.1",
-    "zoom": 25
+    "zoom": 84
 }
