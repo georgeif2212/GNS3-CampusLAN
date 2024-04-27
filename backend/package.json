@@ -28,6 +28,7 @@
   },
   "homepage": "https://github.com/georgeif2212/GNS3-CampusLAN#readme",
   "dependencies": {
+    "esbuild": "^0.20.2",
     "express": "^4.19.2"
   },
   "devDependencies": {
