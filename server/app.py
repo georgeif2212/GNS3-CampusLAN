@@ -32,6 +32,33 @@ def arp():
 
     return jsonify(bfs_result)
 
+@app.route('/native', methods=['GET'])
+def native():
+    data = request.get_json()
+    ip_address = data.get("ip", default_route)
+    
+    # Aquí haces una consulta RESTCONF usando curl para obtener información del router
+    command = [
+        "sudo",
+        "curl",
+        "--interface", "virbr0",
+        f"https://{ip_address}/restconf/data/Cisco-IOS-XE-native:native/",
+        "-k",  # Ignorar verificación de certificados SSL
+        "-u", "admin:admin",  # Usuario y contraseña
+        "-H", "Accept: application/yang-data+json"
+    ]
+    
+    result = subprocess.run(command, capture_output=True, text=True)
+    
+    if result.returncode == 0:
+        native_info = json.loads(result.stdout)
+        bfs_result = {"message": "Data received", "native": native_info}
+    else:
+        bfs_result = {"message": "Error executing curl command"}
+
+    return jsonify(bfs_result)
+
+
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)  # Abierto a conexiones externas
 
