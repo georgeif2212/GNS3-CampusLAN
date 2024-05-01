@@ -20,7 +20,7 @@ nextApp.prepare().then(() => {
   })
 
   app.get("/home", (req, res) => {
-    return nextApp.render(req, res, "/home"); 
+    return nextApp.render(req, res, "/Home"); 
   });
 
   app.get("/products", (req, res) => {
