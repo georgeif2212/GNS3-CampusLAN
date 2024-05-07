@@ -1,0 +1,20 @@
+{
+    "lldp": {
+        "Cisco-IOS-XE-lldp-oper:lldp-entries": {
+            "lldp-entry": [
+                {
+                    "capabilities": {
+                        "router": [
+                            null
+                        ]
+                    },
+                    "connecting-interface": "Gi2",
+                    "device-id": "Router",
+                    "local-interface": "Gi4",
+                    "ttl": 120
+                }
+            ]
+        }
+    },
+    "message": "Data received"
+}
