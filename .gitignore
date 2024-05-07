@@ -2,3 +2,4 @@ snapshots/
 node_modules
 .env
 .next
+__pycache__
