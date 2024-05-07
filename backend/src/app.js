@@ -15,8 +15,12 @@ app.use(express.urlencoded({ extended: true }));
 // Prepara Next.js y luego inicializa tus rutas y middleware personalizados
 nextApp.prepare().then(() => {
 
+  app.get("/",(req,res)=>{
+    res.redirect("/home")
+  })
+
   app.get("/home", (req, res) => {
-    return nextApp.render(req, res, "/home"); 
+    return nextApp.render(req, res, "/Home"); 
   });
 
   app.get("/products", (req, res) => {
