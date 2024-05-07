@@ -1,2 +1,2 @@
-def bfs():
-    print("Este es mi algoritmo BFS")
+def bfs_algorithm():
+    return "Este es mi algoritmo BFS\n"
