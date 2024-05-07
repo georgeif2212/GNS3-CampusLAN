@@ -1,26 +1,12 @@
 from flask import Flask, request, jsonify
+from bfs import bfs_algorithm
+from utils.utils import default_query_ip, build_curl_command  # Importar variables de utils
 import subprocess  # Para usar comandos como curl
 import json
 import os
-from bfs import bfs_algorithm
+
 
 app = Flask(__name__)
-
-default_query_ip="192.168.122.202"
-query_base="/restconf/data/Cisco-IOS-XE"
-
-# Función para generar el comando `curl`
-def build_curl_command(ip_address, endpoint):
-    command = [
-        "sudo",
-        "curl",
-        "--interface", "virbr0",
-        f"https://{ip_address}{query_base}{endpoint}",
-        "-k",  # Ignorar verificación de certificados SSL
-        "-u", "admin:admin",  # Usuario y contraseña
-        "-H", "Accept: application/yang-data+json"
-    ]
-    return command
 
 @app.route('/arp', methods=['GET'])
 def arp():
@@ -52,10 +38,12 @@ def native():
     if result.returncode == 0:
         native_info = json.loads(result.stdout)
         bfs_result = {"message": "Data received", "native": native_info}
+        return jsonify(bfs_result)
     else:
         bfs_result = {"message": "Error executing curl command"}
+        return "Error executing curl command"
 
-    return jsonify(bfs_result)
+    
 
 # @app.route('/cdp', methods=['GET'])
 # def cdp():
