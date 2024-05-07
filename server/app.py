@@ -1,6 +1,7 @@
 from flask import Flask, request, jsonify
 import subprocess  # Para usar comandos como curl
 import json
+import os
 
 app = Flask(__name__)
 
@@ -57,6 +58,39 @@ def native():
         bfs_result = {"message": "Error executing curl command"}
 
     return jsonify(bfs_result)
+
+# @app.route('/cdp', methods=['GET'])
+# def cdp():
+#     data = request.get_json() 
+#     ip_address = data.get("ip", default_route) 
+
+   
+#     command = [
+#         "sudo",
+#         "curl",
+#         "--interface", "virbr0",
+#         f"https://{ip_address}/restconf/data/Cisco-IOS-XE-cdp-oper:cdp-neighbor-details/",
+#         "-k",  # Ignorar verificación de certificados SSL
+#         "-u", "admin:admin",  # Usuario y contraseña
+#         "-H", "Accept: application/yang-data+json"
+#     ]
+    
+#     result = subprocess.run(command, capture_output=True, text=True)
+    
+#     if result.returncode == 0:
+#         cdp_info = json.loads(result.stdout)  # Convierte la salida a JSON
+
+#         # Guarda el resultado en un archivo JSON
+#         output_file_path = os.path.join(os.getcwd(), "cdp_results.json")  # Ruta del archivo JSON
+#         with open(output_file_path, 'w') as file:
+#             json.dump(cdp_info, file, indent=4)  # Guarda el JSON con una indentación legible
+        
+#         bfs_result = {"message": "Data received", "cdp": cdp_info}  # Respuesta para el cliente
+#     else:
+#         bfs_result = {"message": "Error executing curl command"}
+    
+#     # Devuelve la respuesta como JSON
+#     return jsonify(bfs_result)
 
 @app.route('/cdp', methods=['GET'])
 def cdp():
