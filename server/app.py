@@ -86,9 +86,27 @@ def cdp():
 
     return jsonify(bfs_result)
 
+@app.route('/lldp', methods=['GET'])
+def lldp():
+    data = request.get_json()
+    ip_address = data.get("ip", default_query_ip)
+    
+
+    command = build_curl_command(ip_address, "-lldp-oper:lldp-entries")
+    
+    result = subprocess.run(command, capture_output=True, text=True)
+    
+    if result.returncode == 0:
+        lldp_info = json.loads(result.stdout)
+        bfs_result = {"message": "Data received", "lldp": lldp_info}
+    else:
+        bfs_result = {"message": "Error executing curl command"}
+
+    return jsonify(bfs_result)
+
 @app.route('/topology', methods=['GET'])
 def topology():
-    return bfs_algorithm()
+    return jsonify(bfs_algorithm()) 
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)  # Abierto a conexiones externas
