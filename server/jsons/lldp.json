@@ -8,9 +8,20 @@
                             null
                         ]
                     },
-                    "connecting-interface": "Gi2",
+                    "connecting-interface": "Gi4",
                     "device-id": "Router",
-                    "local-interface": "Gi4",
+                    "local-interface": "Gi2",
+                    "ttl": 120
+                },
+                {
+                    "capabilities": {
+                        "router": [
+                            null
+                        ]
+                    },
+                    "connecting-interface": "Gi4",
+                    "device-id": "Router",
+                    "local-interface": "Gi1",
                     "ttl": 120
                 }
             ]
