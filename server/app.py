@@ -2,28 +2,34 @@ from flask import Flask, request, jsonify
 import subprocess  # Para usar comandos como curl
 import json
 import os
+from bfs import bfs_algorithm
 
 app = Flask(__name__)
 
 default_query_ip="192.168.122.202"
 query_base="/restconf/data/Cisco-IOS-XE"
 
+# Función para generar el comando `curl`
+def build_curl_command(ip_address, endpoint):
+    command = [
+        "sudo",
+        "curl",
+        "--interface", "virbr0",
+        f"https://{ip_address}{query_base}{endpoint}",
+        "-k",  # Ignorar verificación de certificados SSL
+        "-u", "admin:admin",  # Usuario y contraseña
+        "-H", "Accept: application/yang-data+json"
+    ]
+    return command
+
 @app.route('/arp', methods=['GET'])
 def arp():
     data = request.get_json()
     ip_address = data.get("ip", default_query_ip)
     
-    # Aquí haces una consulta RESTCONF usando curl para obtener información del router
-    command = [
-        "sudo",
-        "curl",
-        "--interface", "virbr0",
-        f"https://{ip_address}{query_base}-arp-oper:arp-data/",
-        "-k",  # Omitir verificación de certificados SSL
-        "-u", "admin:admin",  # Usuario y contraseña
-        "-H", "Accept: application/yang-data+json"
-    ]
-    
+    # Usar la función para construir el comando `curl`
+    command = build_curl_command(ip_address, "-arp-oper:arp-data/")
+
     result = subprocess.run(command, capture_output=True, text=True)
     
     if result.returncode == 0:
@@ -39,17 +45,8 @@ def native():
     data = request.get_json()
     ip_address = data.get("ip", default_query_ip)
     
-    # Aquí haces una consulta RESTCONF usando curl para obtener información del router
-    command = [
-        "sudo",
-        "curl",
-        "--interface", "virbr0",
-        f"https://{ip_address}/restconf/data/Cisco-IOS-XE-native:native/",
-        "-k",  # Ignorar verificación de certificados SSL
-        "-u", "admin:admin",  # Usuario y contraseña
-        "-H", "Accept: application/yang-data+json"
-    ]
-    
+    command = build_curl_command(ip_address, "-native:native/")
+
     result = subprocess.run(command, capture_output=True, text=True)
     
     if result.returncode == 0:
@@ -65,16 +62,6 @@ def native():
 #     data = request.get_json() 
 #     ip_address = data.get("ip", default_query_ip) 
 
-   
-#     command = [
-#         "sudo",
-#         "curl",
-#         "--interface", "virbr0",
-#         f"https://{ip_address}/restconf/data/Cisco-IOS-XE-cdp-oper:cdp-neighbor-details/",
-#         "-k",  # Ignorar verificación de certificados SSL
-#         "-u", "admin:admin",  # Usuario y contraseña
-#         "-H", "Accept: application/yang-data+json"
-#     ]
     
 #     result = subprocess.run(command, capture_output=True, text=True)
     
@@ -98,16 +85,8 @@ def cdp():
     data = request.get_json()
     ip_address = data.get("ip", default_query_ip)
     
-    # Aquí haces una consulta RESTCONF usando curl para obtener información del router
-    command = [
-        "sudo",
-        "curl",
-        "--interface", "virbr0",
-        f"https://{ip_address}/restconf/data/Cisco-IOS-XE-cdp-oper:cdp-neighbor-details/",
-        "-k",  # Ignorar verificación de certificados SSL
-        "-u", "admin:admin",  # Usuario y contraseña
-        "-H", "Accept: application/yang-data+json"
-    ]
+
+    command = build_curl_command(ip_address, "-cdp-oper:cdp-neighbor-details/")
     
     result = subprocess.run(command, capture_output=True, text=True)
     
@@ -121,8 +100,7 @@ def cdp():
 
 @app.route('/topology', methods=['GET'])
 def topology():
-
-    return
+    return bfs_algorithm()
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=3000)  # Abierto a conexiones externas
