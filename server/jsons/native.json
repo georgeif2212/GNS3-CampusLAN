@@ -1,0 +1,466 @@
+{
+  "Cisco-IOS-XE-native:native": {
+    "version": "16.9",
+    "boot-start-marker": [
+      null
+    ],
+    "boot-end-marker": [
+      null
+    ],
+    "service": {
+      "timestamps": {
+        "debug": {
+          "datetime": {
+            "msec": {}
+          }
+        },
+        "log": {
+          "datetime": {
+            "msec": [
+              null
+            ]
+          }
+        }
+      }
+    },
+    "platform": {
+      "Cisco-IOS-XE-platform:console": {
+        "output": "serial"
+      }
+    },
+    "hostname": "Router",
+    "username": [
+      {
+        "name": "admin",
+        "privilege": 15,
+        "secret": {
+          "encryption": "5",
+          "secret": "$1$7tJH$.jmgDsgwYgRv.QK5BJsB0/"
+        }
+      }
+    ],
+    "ip": {
+      "forward-protocol": {
+        "protocol": "nd"
+      },
+      "access-list": {
+        "Cisco-IOS-XE-acl:standard": [
+          {
+            "name": 1,
+            "access-list-seq-rule": [
+              {
+                "sequence": "10",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.1.96",
+                    "mask": "0.0.0.7"
+                  }
+                }
+              },
+              {
+                "sequence": "20",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.1.0",
+                    "mask": "0.0.0.7"
+                  }
+                }
+              },
+              {
+                "sequence": "30",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.1.8",
+                    "mask": "0.0.0.7"
+                  }
+                }
+              },
+              {
+                "sequence": "40",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.0",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "50",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.4",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "60",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.8",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "70",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.12",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "80",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.16",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "90",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.20",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "100",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.24",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "110",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.28",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "120",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.32",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              },
+              {
+                "sequence": "130",
+                "permit": {
+                  "std-ace": {
+                    "ipv4-prefix": "192.168.10.36",
+                    "mask": "0.0.0.3"
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "Cisco-IOS-XE-http:http": {
+        "authentication": {
+          "local": [
+            null
+          ]
+        },
+        "server": true,
+        "secure-server": true
+      }
+    },
+    "cdp": {
+      "Cisco-IOS-XE-cdp:run": [
+        null
+      ]
+    },
+    "interface": {
+      "GigabitEthernet": [
+        {
+          "name": "1",
+          "ip": {
+            "address": {
+              "primary": {
+                "address": "192.168.10.34",
+                "mask": "255.255.255.252"
+              }
+            },
+            "Cisco-IOS-XE-nat:nat": {
+              "inside": [
+                null
+              ]
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-cdp:cdp": {
+            "enable": true
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        },
+        {
+          "name": "2",
+          "ip": {
+            "address": {
+              "primary": {
+                "address": "192.168.10.26",
+                "mask": "255.255.255.252"
+              }
+            },
+            "Cisco-IOS-XE-nat:nat": {
+              "inside": [
+                null
+              ]
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-cdp:cdp": {
+            "enable": true
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        },
+        {
+          "name": "3",
+          "ip": {
+            "address": {
+              "primary": {
+                "address": "192.168.10.22",
+                "mask": "255.255.255.252"
+              }
+            },
+            "Cisco-IOS-XE-nat:nat": {
+              "inside": [
+                null
+              ]
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-cdp:cdp": {
+            "enable": true
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        },
+        {
+          "name": "4",
+          "ip": {
+            "address": {
+              "primary": {
+                "address": "192.168.10.14",
+                "mask": "255.255.255.252"
+              }
+            },
+            "Cisco-IOS-XE-nat:nat": {
+              "inside": [
+                null
+              ]
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-cdp:cdp": {
+            "enable": true
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        },
+        {
+          "name": "5",
+          "ip": {
+            "address": {
+              "primary": {
+                "address": "192.168.10.6",
+                "mask": "255.255.255.252"
+              }
+            },
+            "Cisco-IOS-XE-nat:nat": {
+              "inside": [
+                null
+              ]
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-cdp:cdp": {
+            "enable": true
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        },
+        {
+          "name": "6",
+          "ip": {
+            "address": {
+              "dhcp": {}
+            },
+            "Cisco-IOS-XE-nat:nat": {
+              "outside": [
+                null
+              ]
+            }
+          },
+          "mop": {
+            "enabled": false,
+            "sysid": false
+          },
+          "Cisco-IOS-XE-ethernet:negotiation": {
+            "auto": true
+          }
+        }
+      ]
+    },
+    "control-plane": {},
+    "login": {
+      "on-success": {
+        "log": {}
+      }
+    },
+    "multilink": {
+      "Cisco-IOS-XE-ppp:bundle-name": "authenticated"
+    },
+    "redundancy": {},
+    "spanning-tree": {
+      "Cisco-IOS-XE-spanning-tree:extend": {
+        "system-id": [
+          null
+        ]
+      }
+    },
+    "subscriber": {
+      "templating": [
+        null
+      ]
+    },
+    "crypto": {
+      "Cisco-IOS-XE-crypto:pki": {
+        "trustpoint": [
+          {
+            "id": "TP-self-signed-2900204950",
+            "enrollment": {
+              "selfsigned": [
+                null
+              ]
+            },
+            "revocation-check": "none",
+            "rsakeypair": {
+              "key-label": "TP-self-signed-2900204950"
+            },
+            "subject-name": "cn=IOS-Self-Signed-Certificate-2900204950"
+          }
+        ],
+        "certificate": {
+          "chain": [
+            {
+              "name": "TP-self-signed-2900204950",
+              "certificate": [
+                {
+                  "serial": "01",
+                  "certtype": "self-signed"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "router": {
+      "Cisco-IOS-XE-ospf:ospf": [
+        {
+          "id": 1,
+          "network": [
+            {
+              "ip": "192.168.10.4",
+              "mask": "0.0.0.3",
+              "area": 0
+            },
+            {
+              "ip": "192.168.10.12",
+              "mask": "0.0.0.3",
+              "area": 0
+            },
+            {
+              "ip": "192.168.10.20",
+              "mask": "0.0.0.3",
+              "area": 0
+            },
+            {
+              "ip": "192.168.10.24",
+              "mask": "0.0.0.3",
+              "area": 0
+            },
+            {
+              "ip": "192.168.10.32",
+              "mask": "0.0.0.3",
+              "area": 0
+            },
+            {
+              "ip": "192.168.122.0",
+              "mask": "0.0.0.255",
+              "area": 0
+            }
+          ]
+        }
+      ]
+    },
+    "license": {
+      "udi": {
+        "pid": "CSR1000V",
+        "sn": "9D3WSC4GWGG"
+      }
+    },
+    "line": {
+      "console": [
+        {
+          "first": "0",
+          "stopbits": "1"
+        }
+      ],
+      "vty": [
+        {
+          "first": 0,
+          "last": 4,
+          "login": {}
+        }
+      ]
+    },
+    "Cisco-IOS-XE-diagnostics:diagnostic": {
+      "bootup": {
+        "level": "minimal"
+      }
+    },
+    "Cisco-IOS-XE-lldp:lldp": {
+      "run": [
+        null
+      ]
+    }
+  }
+}
