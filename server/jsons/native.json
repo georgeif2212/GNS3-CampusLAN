@@ -1,24 +1,19 @@
 {
   "Cisco-IOS-XE-native:native": {
     "version": "16.9",
-    "boot-start-marker": [
-      null
-    ],
-    "boot-end-marker": [
-      null
-    ],
+    "boot-start-marker": [null],
+    "boot-end-marker": [null],
     "service": {
       "timestamps": {
         "debug": {
           "datetime": {
-            "msec": {}
+            "msec": {
+            }
           }
         },
         "log": {
           "datetime": {
-            "msec": [
-              null
-            ]
+            "msec": [null]
           }
         }
       }
@@ -28,7 +23,7 @@
         "output": "serial"
       }
     },
-    "hostname": "Router",
+    "hostname": "nucleo2",
     "username": [
       {
         "name": "admin",
@@ -171,18 +166,14 @@
       },
       "Cisco-IOS-XE-http:http": {
         "authentication": {
-          "local": [
-            null
-          ]
+          "local": [null]
         },
         "server": true,
         "secure-server": true
       }
     },
     "cdp": {
-      "Cisco-IOS-XE-cdp:run": [
-        null
-      ]
+      "Cisco-IOS-XE-cdp:run": [null]
     },
     "interface": {
       "GigabitEthernet": [
@@ -196,9 +187,7 @@
               }
             },
             "Cisco-IOS-XE-nat:nat": {
-              "inside": [
-                null
-              ]
+              "inside": [null]
             }
           },
           "mop": {
@@ -222,9 +211,7 @@
               }
             },
             "Cisco-IOS-XE-nat:nat": {
-              "inside": [
-                null
-              ]
+              "inside": [null]
             }
           },
           "mop": {
@@ -248,9 +235,7 @@
               }
             },
             "Cisco-IOS-XE-nat:nat": {
-              "inside": [
-                null
-              ]
+              "inside": [null]
             }
           },
           "mop": {
@@ -274,9 +259,7 @@
               }
             },
             "Cisco-IOS-XE-nat:nat": {
-              "inside": [
-                null
-              ]
+              "inside": [null]
             }
           },
           "mop": {
@@ -300,9 +283,7 @@
               }
             },
             "Cisco-IOS-XE-nat:nat": {
-              "inside": [
-                null
-              ]
+              "inside": [null]
             }
           },
           "mop": {
@@ -320,12 +301,11 @@
           "name": "6",
           "ip": {
             "address": {
-              "dhcp": {}
+              "dhcp": {
+              }
             },
             "Cisco-IOS-XE-nat:nat": {
-              "outside": [
-                null
-              ]
+              "outside": [null]
             }
           },
           "mop": {
@@ -338,27 +318,26 @@
         }
       ]
     },
-    "control-plane": {},
+    "control-plane": {
+    },
     "login": {
       "on-success": {
-        "log": {}
+        "log": {
+        }
       }
     },
     "multilink": {
       "Cisco-IOS-XE-ppp:bundle-name": "authenticated"
     },
-    "redundancy": {},
+    "redundancy": {
+    },
     "spanning-tree": {
       "Cisco-IOS-XE-spanning-tree:extend": {
-        "system-id": [
-          null
-        ]
+        "system-id": [null]
       }
     },
     "subscriber": {
-      "templating": [
-        null
-      ]
+      "templating": [null]
     },
     "crypto": {
       "Cisco-IOS-XE-crypto:pki": {
@@ -366,9 +345,7 @@
           {
             "id": "TP-self-signed-2900204950",
             "enrollment": {
-              "selfsigned": [
-                null
-              ]
+              "selfsigned": [null]
             },
             "revocation-check": "none",
             "rsakeypair": {
@@ -448,7 +425,8 @@
         {
           "first": 0,
           "last": 4,
-          "login": {}
+          "login": {
+          }
         }
       ]
     },
@@ -458,9 +436,7 @@
       }
     },
     "Cisco-IOS-XE-lldp:lldp": {
-      "run": [
-        null
-      ]
+      "run": [null]
     }
   }
 }
