@@ -4,6 +4,7 @@ import subprocess  # Para usar comandos como curl
 import json
 import os
 
+from routers.api.devices_router import devices_router
 from bfs import bfs_algorithm
 from utils.utils import (
     default_query_ip,
@@ -11,6 +12,10 @@ from utils.utils import (
 )  # Importar variables de utils
 
 app = Flask(__name__)
+
+# Registrar los Blueprints en la aplicación
+app.register_blueprint(devices_router, url_prefix='/api')
+
 
 @app.route("/datos", methods=["GET"])
 def obtener_datos():
