@@ -1,15 +1,37 @@
 from flask import Flask, request, jsonify
+from db.sql_server import cursor as db_cursor
+import subprocess  # Para usar comandos como curl
+import json
+import os
+
 from bfs import bfs_algorithm
 from utils.utils import (
     default_query_ip,
     build_curl_command,
 )  # Importar variables de utils
-import subprocess  # Para usar comandos como curl
-import json
-import os
-
 
 app = Flask(__name__)
+
+@app.route("/datos", methods=["GET"])
+def obtener_datos():
+    # Utilizar el cursor para ejecutar una consulta SQL
+    sql_query = "SELECT * FROM devices"
+    db_cursor.execute(sql_query)
+
+    # Obtener los resultados de la consulta
+    resultados = db_cursor.fetchall()
+    
+    # Convertir los datos a un diccionario
+    insertObject = []
+    column_names = [column[0] for column in db_cursor.description]
+
+    for record in resultados:
+        insertObject.append(dict(zip(column_names, record)))
+    db_cursor.close()
+
+    print(insertObject)
+    # Convertir los resultados en un formato JSON y devolverlos
+    return jsonify(insertObject) 
 
 
 @app.route("/arp", methods=["GET"])
@@ -85,11 +107,11 @@ def lldp():
     return jsonify(bfs_result)
 
 
-@app.route('/topology', methods=['GET'])
+@app.route("/topology", methods=["GET"])
 def topology():
     # Llamamos a bfs_algorithm() para obtener datos filtrados
     queue_to_be_visited = bfs_algorithm()
-    
+
     # Asegurarse de que el retorno sea serializable
     return jsonify(queue_to_be_visited)  # Devolver la lista directamente
 
