@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from db.sql_server import cursor as db_cursor
 import subprocess  # Para usar comandos como curl
 import json
+import requests
 import os
 
 from routers.api.devices_router import devices_router
@@ -9,6 +10,7 @@ from bfs import bfs_algorithm
 from utils.utils import (
     default_query_ip,
     build_curl_command,
+    build_request_command
 )  # Importar variables de utils
 
 app = Flask(__name__)
@@ -16,6 +18,20 @@ app = Flask(__name__)
 # Registrar los Blueprints en la aplicación
 app.register_blueprint(devices_router, url_prefix='/api')
 
+
+@app.route('/consulta')
+def consulta_emulacion():
+
+    # Realizar la solicitud HTTP con autenticación y encabezados
+    try:
+        response = build_request_command(default_query_ip,"-native:native")
+        # Si la solicitud fue exitosa, devolver los datos obtenidos
+        if response.status_code == 200:
+            return response.json()
+        else:
+            return 'Error al realizar la solicitud: {}'.format(response.status_code)
+    except requests.RequestException as e:
+        return 'Error de conexión: {}'.format(str(e))
 
 @app.route("/datos", methods=["GET"])
 def obtener_datos():
