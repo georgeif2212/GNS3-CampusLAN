@@ -1,37 +1,34 @@
 from flask import Flask, request, jsonify
 from db.sql_server import cursor as db_cursor
-import subprocess  # Para usar comandos como curl
-import json
 import requests
 import os
 
 from routers.api.devices_router import devices_router
+from routers.api.queries_router import queries_router
+
 from bfs import bfs_algorithm
-from utils.utils import (
-    default_query_ip,
-    build_curl_command,
-    build_request_command
-)  # Importar variables de utils
+from utils.utils import build_request_command
 
 app = Flask(__name__)
 
 # Registrar los Blueprints en la aplicación
-app.register_blueprint(devices_router, url_prefix='/api')
+app.register_blueprint(devices_router, url_prefix="/api")
+app.register_blueprint(queries_router, url_prefix="/api")
 
 
-@app.route('/consulta')
+@app.route("/consulta")
 def consulta_emulacion():
-
     # Realizar la solicitud HTTP con autenticación y encabezados
     try:
-        response = build_request_command(default_query_ip,"-native:native")
+        response = build_request_command("192.168.10.5", "-native:native")
         # Si la solicitud fue exitosa, devolver los datos obtenidos
         if response.status_code == 200:
             return response.json()
         else:
-            return 'Error al realizar la solicitud: {}'.format(response.status_code)
+            return "Error al realizar la solicitud: {}".format(response.status_code)
     except requests.RequestException as e:
-        return 'Error de conexión: {}'.format(str(e))
+        return "Error de conexión: {}".format(str(e))
+
 
 @app.route("/datos", methods=["GET"])
 def obtener_datos():
@@ -41,7 +38,7 @@ def obtener_datos():
 
     # Obtener los resultados de la consulta
     resultados = db_cursor.fetchall()
-    
+
     # Convertir los datos a un diccionario
     insertObject = []
     column_names = [column[0] for column in db_cursor.description]
@@ -52,80 +49,7 @@ def obtener_datos():
 
     print(insertObject)
     # Convertir los resultados en un formato JSON y devolverlos
-    return jsonify(insertObject) 
-
-
-@app.route("/arp", methods=["GET"])
-def arp():
-    data = request.get_json()
-    ip_address = data.get("ip", default_query_ip)
-
-    # Usar la función para construir el comando `curl`
-    command = build_curl_command(ip_address, "-arp-oper:arp-data/")
-
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    if result.returncode == 0:
-        arp_data = json.loads(result.stdout)
-        bfs_result = {"message": "Data received", "arp": arp_data}
-    else:
-        bfs_result = {"message": "Error executing curl command"}
-
-    return jsonify(bfs_result)
-
-
-@app.route("/native", methods=["GET"])
-def native():
-    data = request.get_json()
-    ip_address = data.get("ip", default_query_ip)
-
-    command = build_curl_command(ip_address, "-native:native/")
-
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    if result.returncode == 0:
-        native_info = json.loads(result.stdout)
-        bfs_result = {"message": "Data received", "native": native_info}
-        return jsonify(bfs_result)
-    else:
-        bfs_result = {"message": "Error executing curl command"}
-        return "Error executing curl command"
-
-
-@app.route("/cdp", methods=["GET"])
-def cdp():
-    data = request.get_json()
-    ip_address = data.get("ip", default_query_ip)
-
-    command = build_curl_command(ip_address, "-cdp-oper:cdp-neighbor-details/")
-
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    if result.returncode == 0:
-        cdp_info = json.loads(result.stdout)
-        bfs_result = {"message": "Data received", "cdp": cdp_info}
-    else:
-        bfs_result = {"message": "Error executing curl command"}
-
-    return jsonify(bfs_result)
-
-
-@app.route("/lldp", methods=["GET"])
-def lldp():
-    data = request.get_json()
-    ip_address = data.get("ip", default_query_ip)
-
-    command = build_curl_command(ip_address, "-lldp-oper:lldp-entries")
-
-    result = subprocess.run(command, capture_output=True, text=True)
-
-    if result.returncode == 0:
-        lldp_info = json.loads(result.stdout)
-        bfs_result = {"message": "Data received", "lldp": lldp_info}
-    else:
-        bfs_result = {"message": "Error executing curl command"}
-
-    return jsonify(bfs_result)
+    return jsonify(insertObject)
 
 
 @app.route("/topology", methods=["GET"])
