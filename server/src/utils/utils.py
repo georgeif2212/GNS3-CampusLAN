@@ -24,7 +24,7 @@ def build_curl_command(ip_address, endpoint):
         f"https://{ip_address}{query_base}{endpoint}",
         "-k",  # Ignorar verificación de certificados SSL
         "-u",
-        "admin:admin",  # Usuario y contraseña
+        f"{username}:{password}",  # Usuario y contraseña
         "-H",
         "Accept: application/yang-data+json",
     ]
@@ -32,9 +32,15 @@ def build_curl_command(ip_address, endpoint):
 
 
 def build_request_command(ip_address, endpoint):
-    return requests.get(
-        f"https://{ip_address}{query_base}{endpoint}",
-        headers=headers,
-        auth=(username, password),
-        verify=False,
-    )
+    try:
+        response = requests.get(
+            f"https://{ip_address}{query_base}{endpoint}",
+            headers=headers,
+            auth=(username, password),
+            verify=False,
+        )
+        response.raise_for_status()
+        return response
+    except requests.exceptions.RequestException as e:
+        print(f"Error during request to {ip_address}: {e}")
+        return None
