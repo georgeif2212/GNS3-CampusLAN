@@ -3,3 +3,7 @@ node_modules
 .env
 .next
 __pycache__
+
+*.qcow2
+*.vpc
+docker

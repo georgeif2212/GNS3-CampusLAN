@@ -1,0 +1,6 @@
+Start QEMU with /bin/qemu-system-x86_64 -name distribution4 -m 3072M -smp cpus=1,sockets=1 -enable-kvm -machine smm=off -boot order=c -drive file=/home/gns3/GNS3/projects/4282a99c-f1d5-4537-89ae-495863f6206d/project-files/qemu/40569b29-500c-459c-a01b-ba12b6619322/hda_disk.qcow2,if=ide,index=0,media=disk,id=drive0 -uuid 40569b29-500c-459c-a01b-ba12b6619322 -serial telnet:127.0.0.1:5009,server,nowait -monitor tcp:127.0.0.1:42625,server,nowait -net none -device vmxnet3,mac=0c:56:9b:29:00:00,netdev=gns3-0 -netdev socket,id=gns3-0,udp=127.0.0.1:20061,localaddr=127.0.0.1:20060 -device vmxnet3,mac=0c:56:9b:29:00:01,netdev=gns3-1 -netdev socket,id=gns3-1,udp=127.0.0.1:20063,localaddr=127.0.0.1:20062 -device vmxnet3,mac=0c:56:9b:29:00:02,netdev=gns3-2 -netdev socket,id=gns3-2,udp=127.0.0.1:20065,localaddr=127.0.0.1:20064 -device vmxnet3,mac=0c:56:9b:29:00:03,netdev=gns3-3 -netdev socket,id=gns3-3,udp=127.0.0.1:20067,localaddr=127.0.0.1:20066 -loadvm GNS3_SAVED_STATE -display none
+
+Execution log:
+qemu-system-x86_64: warning: host doesn't support requested feature: CPUID.80000001H:ECX.svm [bit 2]
+qemu-system-x86_64: warning: TSC frequency mismatch between VM (3791943 kHz) and host (3792004 kHz), and TSC scaling unavailable
+qemu-system-x86_64: terminating on signal 15 from pid 858 (/usr/share/gns3/gns3-server/bin/python)
