@@ -1,6 +1,6 @@
 from collections import deque
 from utils.utils import build_curl_command, default_query_ip, build_request_command
-import subprocess  # Para usar comandos como curl
+import subprocess 
 import json
 import requests
 from flask import jsonify
@@ -54,14 +54,22 @@ def get_interfaces_info(arp_data, pending_nodes, visited_nodes):
             local_ip = data["local_ip"]
             for neighbor_ip in data["neighbors"]:
                 nodes[interface] = [local_ip, neighbor_ip]
-                if all(
-                    neighbor_ip not in iface[0]
-                    for node in visited_nodes
-                    for iface in node.values()
-                ) and not neighbor_ip.startswith("192.168.122"):
+
+                is_neighbor_in_visited = False
+
+                for node in visited_nodes:
+                    for iface in node.values():
+                        if neighbor_ip in iface[0]:
+                            is_neighbor_in_visited = True
+                            break
+                    if is_neighbor_in_visited:
+                        break
+
+                if not is_neighbor_in_visited and not neighbor_ip.startswith("192.168.122"):
                     pending_nodes.append(neighbor_ip)
 
     return nodes
+
 
 
 def bfs_algorithm():
@@ -74,7 +82,7 @@ def bfs_algorithm():
     while queue_pending_nodes:
         i += 1
         print(f"ITERACION: {i}, pending: {queue_pending_nodes}")
-
+        print(f"VISITED_NODES: {visited_nodes}")
         current_ip = queue_pending_nodes.popleft()
         print(f"CURRENT IP: {current_ip}, {queue_pending_nodes}")
         arp_data = get_arp_data(current_ip)
@@ -85,7 +93,7 @@ def bfs_algorithm():
 
         if queue_pending_nodes:
             ip = queue_pending_nodes[0]
-            print(f"COLA: {queue_pending_nodes}")
+            
 
     print("Final visited nodes:", visited_nodes)
     return json.dumps(visited_nodes, indent=4)
