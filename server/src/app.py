@@ -54,11 +54,9 @@ def obtener_datos():
 
 @app.route("/topology", methods=["GET"])
 def topology():
-    # Llamamos a bfs_algorithm() para obtener datos filtrados
-    queue_to_be_visited = bfs_algorithm()
+    topology = bfs_algorithm()
 
-    # Asegurarse de que el retorno sea serializable
-    return jsonify(queue_to_be_visited)  # Devolver la lista directamente
+    return jsonify(topology)
 
 
 if __name__ == "__main__":
