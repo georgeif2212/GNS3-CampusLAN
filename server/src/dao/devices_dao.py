@@ -12,7 +12,6 @@ class DeviceDaoSQL:
         result = db_cursor.fetchall()
         column_description = db_cursor.description
 
-        db_cursor.close()
         return result, column_description
 
     @staticmethod
@@ -20,7 +19,6 @@ class DeviceDaoSQL:
         query = "INSERT INTO devices (NombreHost, VersionSoftware, Modelo, NumeroSerie) VALUES (?, ?)"
         db_cursor.execute(query, (data["name"], data["price"]))
         db_cursor.commit()
-        db_cursor.close()
         return True  # Assuming successful creation
 
     @staticmethod
@@ -28,7 +26,6 @@ class DeviceDaoSQL:
         query = "UPDATE devices SET name = ?, price = ? WHERE id = ?"
         db_cursor.execute(query, (data["name"], data["price"], did))
         db_cursor.commit()
-        db_cursor.close()
         return True  # Assuming successful update
 
     @staticmethod
@@ -36,5 +33,4 @@ class DeviceDaoSQL:
         query = "DELETE FROM devices WHERE id = ?"
         db_cursor.execute(query, (did,))
         db_cursor.commit()
-        db_cursor.close()
         return True  # Assuming successful deletion
