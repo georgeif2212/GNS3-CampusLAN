@@ -9,13 +9,6 @@ from utils.utils import (
 
 queries_router = Blueprint("queries", __name__)
 
-
-@queries_router.route("/devices")
-def get_products():
-    result = DevicesController.get()
-    return jsonify(result)
-
-
 @queries_router.route("/arp", methods=["GET"])
 def arp():
     data = request.get_json()

@@ -1,4 +1,5 @@
 from dao.devices_dao import DeviceDaoSQL
+from utils.utils import query_to_GNS3
 
 
 class DevicesController:
@@ -16,11 +17,13 @@ class DevicesController:
 
     @staticmethod
     async def get_by_id(dId):
-        pass 
+        pass
 
     @staticmethod
     def create(data):
-        pass
+        json = query_to_GNS3(data)
+        print(json)
+        return {}
 
     @staticmethod
     async def update_by_id(dId, data):
