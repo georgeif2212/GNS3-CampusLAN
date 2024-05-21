@@ -1,4 +1,5 @@
 from db.sql_server import cursor as db_cursor
+from utils.utils import build_fail_response_create, build_success_response_create
 
 
 class DeviceDaoSQL:
@@ -16,10 +17,28 @@ class DeviceDaoSQL:
 
     @staticmethod
     def create(data):
-        query = "INSERT INTO devices (NombreHost, VersionSoftware, Modelo, NumeroSerie) VALUES (?, ?)"
-        db_cursor.execute(query, (data["name"], data["price"]))
+        print(f"data: {data}")
+        query = "INSERT INTO devices (HostName, SoftwareVersion, Model, SerialNumber) VALUES (?, ?, ?, ?)"
+        db_cursor.execute(
+            query,
+            (
+                data["nombre_host"],
+                data["version_software"],
+                data["modelo"],
+                data["numero_serie"],
+            ),
+        )
         db_cursor.commit()
-        return True  # Assuming successful creation
+
+        # Obtain the number of affected rows
+        rows_affected = db_cursor.rowcount
+
+        if rows_affected > 0:
+            print("Successful insertion")
+            return build_success_response_create
+        else:
+            print("Failed insertion")
+            return build_fail_response_create
 
     @staticmethod
     def update_by_id(did, data):
