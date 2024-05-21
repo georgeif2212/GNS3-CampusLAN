@@ -4,6 +4,7 @@ import requests
 import os
 
 from routers.api.devices_router import devices_router
+from routers.api.interfaces_router import interfaces_router
 from routers.api.queries_router import queries_router
 
 from bfs import bfs_algorithm
@@ -12,7 +13,7 @@ from utils.utils import build_request_command
 app = Flask(__name__)
 
 # Registrar los Blueprints en la aplicación
-app.register_blueprint(devices_router, url_prefix="/api")
+app.register_blueprint(devices_router, interfaces_router, url_prefix="/api")
 app.register_blueprint(queries_router, url_prefix="/api")
 
 
