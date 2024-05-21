@@ -1,13 +1,13 @@
 CREATE TABLE arp (
-    ID_ARP INT PRIMARY KEY IDENTITY,
-    ID_Device INT,
-    IP_Address VARCHAR(15),
-    Encryption_Type VARCHAR(50),
-    Interface_Name VARCHAR(50),
-    Link_Type VARCHAR(50),
-    ARP_Mode VARCHAR(50),
-    Hardware_Type VARCHAR(50),
-    MAC_Address VARCHAR(17),
-    Time TIMESTAMP,
-    FOREIGN KEY (ID_Device) REFERENCES devices(DispositivoID)
+    id_arp UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    id_device UNIQUEIDENTIFIER,
+    ip_address VARCHAR(15),
+    encryption_type VARCHAR(50),
+    interface_name VARCHAR(50),
+    link_type VARCHAR(50),
+    arp_mode VARCHAR(50),
+    hardware_type VARCHAR(50),
+    mac_address VARCHAR(17),
+    datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_device) REFERENCES devices(id_device)
 );

@@ -1,9 +1,10 @@
-CREATE TABLE Interfaces (
-    ID_Interface INT PRIMARY KEY IDENTITY,
-    ID_Device INT,
-    Interface_Name VARCHAR(50),
-    IP_Address VARCHAR(15),
-    Subnet_Mask VARCHAR(15),
-    CDP_State VARCHAR(20),
-    FOREIGN KEY (ID_Device) REFERENCES devices(DispositivoID)
+CREATE TABLE interfaces (
+    id_interface UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    id_device UNIQUEIDENTIFIER,
+    interface_name VARCHAR(50),
+    ip_address VARCHAR(15),
+    subnet_mask VARCHAR(15),
+    cdp_state VARCHAR(20),
+    datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_device) REFERENCES devices(id_device)
 );

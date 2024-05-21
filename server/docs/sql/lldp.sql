@@ -1,10 +1,11 @@
 CREATE TABLE lldp_neighbors (
-    ID_LLDP_Neighbor INT PRIMARY KEY IDENTITY,
-    ID_Device INT,
-    Neighbor_Device_ID INT,
-    Local_Interface VARCHAR(50),
-    Remote_Interface VARCHAR(50),
-    Capabilities VARCHAR(50),
-    TTL INT,
-    FOREIGN KEY (ID_Device) REFERENCES devices(DispositivoID)
+    id_lldp_neighbor UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    id_device UNIQUEIDENTIFIER,
+    neighbor_device_id VARCHAR(50),
+    local_interface VARCHAR(10),
+    remote_interface VARCHAR(10),
+    capabilities VARCHAR(50),
+    ttl INT,
+    datetime DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_device) REFERENCES devices(id_device)
 );

@@ -9,6 +9,7 @@ load_dotenv()
 
 default_query_ip = "192.168.122.202"
 query_base = "/restconf/data/Cisco-IOS-XE"
+endpoint_native = "-native:native/"
 
 # Datos de autenticación
 username = os.getenv("USERNAME-GNS3-DEVICES")
@@ -17,6 +18,15 @@ password = os.getenv("PWD-GNS3-DEVICES")
 # Encabezados de la solicitud
 headers = {"Accept": "application/yang-data+json"}
 
+build_success_response_create = {
+    "status": "success",
+    "message": "The resource has been created succesfully",
+}
+
+build_fail_response_create = {
+    "status": "failed",
+    "message": "The resource hasn't been created",
+}
 
 def build_curl_command(ip_address, endpoint):
     command = [
@@ -49,25 +59,20 @@ def build_request_command(ip_address, endpoint):
         return None
 
 
-import subprocess
-import json
-from flask import jsonify
-
-
-def query_to_GNS3(ip_address):
+def query_to_GNS3(ip_address, query):
     try:
-        command = build_curl_command(ip_address, "-arp-oper:arp-data/")
+        command = build_curl_command(ip_address, query)
         result = subprocess.run(command, capture_output=True, text=True)
 
         if result.returncode == 0:
-            arp_data = json.loads(result.stdout)
-            bfs_result = {"message": "Data received", "arp": arp_data}
+            data = json.loads(result.stdout)
+            return data
         else:
             bfs_result = {
-                "message": "Error executing curl command",
+                "status": "Error executing curl command",
                 "error": result.stderr,
             }
-        return jsonify(bfs_result)
+        return bfs_result
 
     except subprocess.CalledProcessError as e:
         return jsonify({"message": "Subprocess error", "error": str(e)})
