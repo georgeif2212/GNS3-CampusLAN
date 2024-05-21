@@ -20,10 +20,16 @@ class DevicesController:
         pass
 
     @staticmethod
-    def create(data):
-        json = query_to_GNS3(data)
-        print(json)
-        return {}
+    def create(ip, endpoint):
+        json_data = query_to_GNS3(ip, endpoint)
+        data = {
+            "nombre_host": json_data.get("Cisco-IOS-XE-native:native", {}).get("hostname", ""),
+            "version_software": json_data.get("Cisco-IOS-XE-native:native", {}).get("version", ""),
+            "modelo": json_data.get("Cisco-IOS-XE-native:native", {}).get("license", {}).get("udi", {}).get("pid", ""),
+            "numero_serie": json_data.get("Cisco-IOS-XE-native:native", {}).get("license", {}).get("udi", {}).get("sn", "")
+        }
+        result = DeviceDaoSQL.create(data)
+        return result
 
     @staticmethod
     async def update_by_id(dId, data):
