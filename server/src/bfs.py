@@ -1,6 +1,6 @@
 from collections import deque
 from utils.utils import build_curl_command, default_query_ip, build_request_command
-import subprocess 
+import subprocess
 import json
 import requests
 from flask import jsonify
@@ -21,8 +21,14 @@ def get_arp_data(ip_address):
         return None
 
 
-def get_interfaces_info(arp_data, pending_nodes, visited_nodes):
+def get_interfaces_info(ip, pending_ips, visited_nodes, visited_ips):
+    # * if ip is already visited, don't query arp
+    if ip in visited_ips:
+        return None
+
+    arp_data = get_arp_data(ip)
     nodes = {}
+
     if not arp_data:
         return nodes
 
@@ -38,14 +44,13 @@ def get_interfaces_info(arp_data, pending_nodes, visited_nodes):
         ip_address = entry.get("address")
         mode = entry.get("mode")
 
-        if not interface or not ip_address or not mode:
-            continue
-
         if interface not in temp_nodes:
             temp_nodes[interface] = {}
 
         if mode == "ios-arp-mode-interface":
             temp_nodes[interface]["local_ip"] = ip_address
+            # Añadir IP local a visited_ips
+            visited_ips.add(ip_address)
         elif mode == "ios-arp-mode-dynamic":
             temp_nodes[interface].setdefault("neighbors", []).append(ip_address)
 
@@ -55,45 +60,34 @@ def get_interfaces_info(arp_data, pending_nodes, visited_nodes):
             for neighbor_ip in data["neighbors"]:
                 nodes[interface] = [local_ip, neighbor_ip]
 
-                is_neighbor_in_visited = False
-
-                for node in visited_nodes:
-                    for iface in node.values():
-                        if neighbor_ip in iface[0]:
-                            is_neighbor_in_visited = True
-                            break
-                    if is_neighbor_in_visited:
-                        break
-
-                if not is_neighbor_in_visited and not neighbor_ip.startswith("192.168.122"):
-                    pending_nodes.append(neighbor_ip)
+                # Verificar si la IP vecina ya ha sido visitada
+                if neighbor_ip not in visited_nodes and not neighbor_ip.startswith(
+                    "192.168.122"
+                ):
+                    pending_ips.append(neighbor_ip)
 
     return nodes
 
-
-
 def bfs_algorithm():
-    queue_pending_nodes = deque()
+    queue_pending_ips = deque()
     visited_nodes = []
+    visited_ips = set()
     ip = "192.168.122.202"
-    queue_pending_nodes.append(ip)
-    i = 0
+    queue_pending_ips.append(ip)
 
-    while queue_pending_nodes:
-        i += 1
-        print(f"ITERACION: {i}, pending: {queue_pending_nodes}")
-        print(f"VISITED_NODES: {visited_nodes}")
-        current_ip = queue_pending_nodes.popleft()
-        print(f"CURRENT IP: {current_ip}, {queue_pending_nodes}")
-        arp_data = get_arp_data(current_ip)
-        node = get_interfaces_info(arp_data, queue_pending_nodes, visited_nodes)
+
+    while queue_pending_ips:
+        # print(f"ITERACION: {i}, pending: {queue_pending_ips}")
+        # print(f"VISITED_NODES: {visited_nodes}")
+        # print(f"VISITED_IPS: {visited_ips}")
+        current_ip = queue_pending_ips.popleft()
+        # print(f"CURRENT IP: {current_ip}, {queue_pending_ips}")
+        node = get_interfaces_info(
+            current_ip, queue_pending_ips, visited_nodes, visited_ips
+        )
 
         if node:
             visited_nodes.append(node)
 
-        if queue_pending_nodes:
-            ip = queue_pending_nodes[0]
-            
-
     print("Final visited nodes:", visited_nodes)
-    return json.dumps(visited_nodes, indent=4)
+    return json.dumps(visited_nodes, indent=2)
