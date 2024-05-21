@@ -2,7 +2,7 @@ from db.sql_server import cursor as db_cursor
 from utils.utils import build_fail_response_create, build_success_response_create
 
 
-class DeviceDaoSQL:
+class DeviceModelSQL:
     @staticmethod
     def get(criteria=None):
         query = "SELECT * FROM devices"
