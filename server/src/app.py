@@ -13,7 +13,8 @@ from utils.utils import build_request_command
 app = Flask(__name__)
 
 # Registrar los Blueprints en la aplicación
-app.register_blueprint(devices_router, interfaces_router, url_prefix="/api")
+app.register_blueprint(devices_router, url_prefix="/api")
+app.register_blueprint(interfaces_router, url_prefix="/api")
 app.register_blueprint(queries_router, url_prefix="/api")
 
 
