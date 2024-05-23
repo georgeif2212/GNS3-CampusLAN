@@ -28,6 +28,7 @@ build_fail_response_create = {
     "message": "The resource hasn't been created",
 }
 
+
 def build_curl_command(ip_address, endpoint):
     command = [
         "sudo",
@@ -80,3 +81,11 @@ def query_to_GNS3(ip_address, query):
         return jsonify({"message": "JSON decode error", "error": str(e)})
     except Exception as e:
         return jsonify({"message": "An unexpected error occurred", "error": str(e)})
+
+
+def get_nested(dictionary, keys, default=None):
+    for key in keys:
+        dictionary = dictionary.get(key, default)
+        if dictionary is default:
+            break
+    return dictionary
