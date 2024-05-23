@@ -5,10 +5,14 @@ from utils.utils import default_query_ip, endpoint_native
 interfaces_router = Blueprint("interfaces", __name__)
 
 
-@interfaces_router.route("/interfaces")
+@interfaces_router.route("", methods=["GET"])
 def get_interfaces():
-    pass
+    result = InterfacesController.get()
+    return jsonify(result)
 
-@interfaces_router.route("/interfaces", methods=["POST"])
+
+@interfaces_router.route("", methods=["POST"])
 def insert_interfaces():
-    pass
+    request_json = request.get_json()
+    result = InterfacesController.create(request_json, endpoint_native)
+    return jsonify(result)
