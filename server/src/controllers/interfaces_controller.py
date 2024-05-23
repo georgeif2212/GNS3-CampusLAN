@@ -4,7 +4,7 @@ from utils.utils import query_to_GNS3
 
 class InterfacesController:
     @staticmethod
-    async def get(criteria=None):
+    def get(criteria=None):
         result, column_description = InterfaceModelSQL.get(criteria)
         # * Convert data into a dict
         data = []
@@ -20,7 +20,7 @@ class InterfacesController:
         pass
 
     @staticmethod
-    async def create(ip, endpoint):
+    def create(ip, endpoint):
         pass
 
     @staticmethod
