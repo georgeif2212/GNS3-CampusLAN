@@ -18,7 +18,7 @@ class DeviceModelSQL:
     @staticmethod
     def create(data):
         print(f"data: {data}")
-        query = "INSERT INTO devices (HostName, SoftwareVersion, Model, SerialNumber) VALUES (?, ?, ?, ?)"
+        query = "INSERT INTO devices (hostname, software_version, model, serial_number) VALUES (?, ?, ?, ?)"
         db_cursor.execute(
             query,
             (
