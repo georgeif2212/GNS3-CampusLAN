@@ -4,52 +4,19 @@ import requests
 import os
 
 from routers.api.devices_router import devices_router
+from routers.api.interfaces_router import interfaces_router
 from routers.api.queries_router import queries_router
 
 from bfs import bfs_algorithm
 from utils.utils import build_request_command
+from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 
 # Registrar los Blueprints en la aplicación
-app.register_blueprint(devices_router, url_prefix="/api")
+app.register_blueprint(devices_router, url_prefix="/api/devices")
+app.register_blueprint(interfaces_router, url_prefix="/api/interfaces")
 app.register_blueprint(queries_router, url_prefix="/api")
-
-
-@app.route("/consulta")
-def consulta_emulacion():
-    # Realizar la solicitud HTTP con autenticación y encabezados
-    try:
-        response = build_request_command("192.168.10.5", "-native:native")
-        # Si la solicitud fue exitosa, devolver los datos obtenidos
-        if response.status_code == 200:
-            return response.json()
-        else:
-            return "Error al realizar la solicitud: {}".format(response.status_code)
-    except requests.RequestException as e:
-        return "Error de conexión: {}".format(str(e))
-
-
-@app.route("/datos", methods=["GET"])
-def obtener_datos():
-    # Utilizar el cursor para ejecutar una consulta SQL
-    sql_query = "SELECT * FROM devices"
-    db_cursor.execute(sql_query)
-
-    # Obtener los resultados de la consulta
-    resultados = db_cursor.fetchall()
-
-    # Convertir los datos a un diccionario
-    insertObject = []
-    column_names = [column[0] for column in db_cursor.description]
-
-    for record in resultados:
-        insertObject.append(dict(zip(column_names, record)))
-    db_cursor.close()
-
-    print(insertObject)
-    # Convertir los resultados en un formato JSON y devolverlos
-    return jsonify(insertObject)
 
 
 @app.route("/topology", methods=["GET"])
@@ -57,6 +24,32 @@ def topology():
     topology = bfs_algorithm()
 
     return jsonify(topology)
+
+
+# Manejador de errores para excepciones específicas
+@app.errorhandler(HTTPException)
+def handle_http_exception(e):
+    response = e.get_response()
+    response.data = jsonify({
+        "status": e.code,
+        "error": e.name,
+        "message": e.description
+    }).data
+    response.content_type = "application/json"
+    return response
+
+# Manejador de errores para cualquier excepción no manejada
+@app.errorhandler(Exception)
+def handle_exception(e):
+    code = 500
+    if isinstance(e, HTTPException):
+        code = e.code
+    response = jsonify({
+        "status": code,
+        "error": type(e).__name__,
+        "message": str(e)
+    })
+    return response, code
 
 
 if __name__ == "__main__":

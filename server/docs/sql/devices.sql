@@ -1,9 +1,9 @@
 CREATE TABLE devices (
-    ID_Device UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-    HostName VARCHAR(50),
-    SoftwareVersion VARCHAR(50),
-    Model VARCHAR(50),
-    SerialNumber VARCHAR(50),
+    id_device UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+    hostname VARCHAR(50),
+    software_version VARCHAR(50),
+    model VARCHAR(50),
+    serial_number VARCHAR(50),
     datetime DATETIME DEFAULT CURRENT_TIMESTAMP
 );
 

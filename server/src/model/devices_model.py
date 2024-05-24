@@ -2,7 +2,7 @@ from db.sql_server import cursor as db_cursor
 from utils.utils import build_fail_response_create, build_success_response_create
 
 
-class DeviceDaoSQL:
+class DeviceModelSQL:
     @staticmethod
     def get(criteria=None):
         query = "SELECT * FROM devices"
@@ -16,9 +16,18 @@ class DeviceDaoSQL:
         return result, column_description
 
     @staticmethod
+    def get_by_hostname(hostname):
+        query = "SELECT id_device FROM devices WHERE hostname = ?"
+        db_cursor.execute(query, (hostname))
+        result = db_cursor.fetchone()
+        if result:
+            return {"id_device": result[0]}
+        return None
+
+    @staticmethod
     def create(data):
         print(f"data: {data}")
-        query = "INSERT INTO devices (HostName, SoftwareVersion, Model, SerialNumber) VALUES (?, ?, ?, ?)"
+        query = "INSERT INTO devices (hostname, software_version, model, serial_number) VALUES (?, ?, ?, ?)"
         db_cursor.execute(
             query,
             (

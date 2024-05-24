@@ -1,11 +1,11 @@
-from dao.devices_dao import DeviceDaoSQL
+from model.devices_model import DeviceModelSQL
 from utils.utils import query_to_GNS3
 
 
 class DevicesController:
     @staticmethod
     def get(criteria=None):
-        result, column_description = DeviceDaoSQL.get(criteria)
+        result, column_description = DeviceModelSQL.get(criteria)
         # * Convert data into a dict
         insertObject = []
         column_names = [column[0] for column in column_description]
@@ -28,7 +28,7 @@ class DevicesController:
             "modelo": json_data.get("Cisco-IOS-XE-native:native", {}).get("license", {}).get("udi", {}).get("pid", ""),
             "numero_serie": json_data.get("Cisco-IOS-XE-native:native", {}).get("license", {}).get("udi", {}).get("sn", "")
         }
-        result = DeviceDaoSQL.create(data)
+        result = DeviceModelSQL.create(data)
         return result
 
     @staticmethod
