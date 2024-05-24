@@ -16,6 +16,15 @@ class DeviceModelSQL:
         return result, column_description
 
     @staticmethod
+    def get_by_hostname(hostname):
+        query = "SELECT id_device FROM devices WHERE hostname = ?"
+        db_cursor.execute(query, (hostname))
+        result = db_cursor.fetchone()
+        if result:
+            return {"id_device": result[0]}
+        return None
+
+    @staticmethod
     def create(data):
         print(f"data: {data}")
         query = "INSERT INTO devices (hostname, software_version, model, serial_number) VALUES (?, ?, ?, ?)"
