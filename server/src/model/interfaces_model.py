@@ -21,16 +21,23 @@ class InterfaceModelSQL:
         return result, column_description
 
     @staticmethod
-    def createByIdDevice(data):
-        print(f"data: {data}")
-        query = "INSERT INTO interfaces (id_device, interface_name, ip_address, subnet_mask, cdp_state) VALUES (?, ?, ?, ?)"
+    def getFilter(criteria=None, params=None):
+        pass
+
+    @staticmethod
+    def create(data):
+        query = """
+        INSERT INTO interfaces (id_device, interface_name, ip_address, subnet_mask, cdp_state) 
+        VALUES (?, ?, ?, ?, ?)
+        """
         db_cursor.execute(
             query,
             (
-                data["nombre_host"],
-                data["version_software"],
-                data["modelo"],
-                data["numero_serie"],
+                data["id_device"],
+                data["interface_name"],
+                data["ip_address"],
+                data["mask"],
+                data["cdp_state"],
             ),
         )
         db_cursor.commit()
