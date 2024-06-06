@@ -1,5 +1,7 @@
 from flask import Flask, jsonify
 
+
+
 from routers.api.devices_router import devices_router
 from routers.api.interfaces_router import interfaces_router
 from routers.api.queries_router import queries_router
@@ -28,13 +30,12 @@ def topology():
 @app.errorhandler(HTTPException)
 def handle_http_exception(e):
     response = e.get_response()
-    response.data = jsonify({
-        "status": e.code,
-        "error": e.name,
-        "message": e.description
-    }).data
+    response.data = jsonify(
+        {"status": e.code, "error": e.name, "message": e.description}
+    ).data
     response.content_type = "application/json"
     return response
+
 
 # Manejador de errores para cualquier excepción no manejada
 @app.errorhandler(Exception)
@@ -42,11 +43,7 @@ def handle_exception(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
-    response = jsonify({
-        "status": code,
-        "error": type(e).__name__,
-        "message": str(e)
-    })
+    response = jsonify({"status": code, "error": type(e).__name__, "message": str(e)})
     return response, code
 
 
