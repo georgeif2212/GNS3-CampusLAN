@@ -7,18 +7,18 @@ import pdfkit
 reports_router = Blueprint("reports", __name__)
 
 
-@reports_router.route("/devices")
+@reports_router.route("/inventory")
 def devices_report():
     result = DevicesController.get()
 
-    return render_template("report_base.html", devices=result)
+    return render_template("inventory.html", devices=result)
 
 
-@reports_router.route("/devices/pdf", methods=["GET"])
+@reports_router.route("/inventory/pdf", methods=["GET"])
 def devices_report_pdf():
     result = DevicesController.get()
 
-    rendered = render_template("report_base.html", devices=result)
+    rendered = render_template("inventory.html", devices=result)
     pdf = pdfkit.from_string(rendered, False)
     response = make_response(pdf)
     response.headers["Content-Type"] = "application/pdf"
