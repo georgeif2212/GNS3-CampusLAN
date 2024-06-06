@@ -1,6 +1,6 @@
-from db.sql_server import cursor as db_cursor
+from db.sql_server import cursor as db_cursor, conn as db_connection
 from utils.utils import build_fail_response_create, build_success_response_create
-
+from sqlalchemy.exc import IntegrityError, OperationalError
 
 class DeviceModelSQL:
     @staticmethod
@@ -28,26 +28,41 @@ class DeviceModelSQL:
     def create(data):
         print(f"data: {data}")
         query = "INSERT INTO devices (hostname, software_version, model, serial_number) VALUES (?, ?, ?, ?)"
-        db_cursor.execute(
-            query,
-            (
-                data["nombre_host"],
-                data["version_software"],
-                data["modelo"],
-                data["numero_serie"],
-            ),
-        )
-        db_cursor.commit()
+        try:
+            db_cursor.execute(
+                query,
+                (
+                    data["nombre_host"],
+                    data["version_software"],
+                    data["modelo"],
+                    data["numero_serie"],
+                ),
+            )
+            db_connection.commit()  # Asegúrate de usar db_connection.commit()
 
-        # Obtain the number of affected rows
-        rows_affected = db_cursor.rowcount
+            # Obtener el número de filas afectadas
+            rows_affected = db_cursor.rowcount
 
-        if rows_affected > 0:
-            print("Successful insertion")
-            return build_success_response_create
-        else:
-            print("Failed insertion")
-            return build_fail_response_create
+            if rows_affected > 0:
+                print("Successful insertion")
+                return build_success_response_create
+            else:
+                print("Failed insertion")
+                return build_fail_response_create
+        except IntegrityError as e:
+            db_connection.rollback()  # Rollback en caso de error
+            if "2627" in str(e):  # Código de error para clave duplicada
+                return {"error": "Duplicate hostname", "status": 400}
+            else:
+                return {"error": str(e), "status": 500}
+        except OperationalError as e:
+            db_connection.rollback()  # Rollback en caso de error
+            return {"error": str(e), "status": 500}
+        except Exception as e:
+            db_connection.rollback()  # Rollback en caso de error general
+            return {"error": str(e), "status": 500}
+
+
 
     @staticmethod
     def update_by_id(did, data):
