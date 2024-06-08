@@ -10,6 +10,7 @@ load_dotenv()
 default_query_ip = "192.168.122.202"
 query_base = "/restconf/data/Cisco-IOS-XE"
 endpoint_native = "-native:native/"
+endpoint_arp="-arp-oper:arp-data/"
 
 # Datos de autenticación
 username = os.getenv("USERNAME-GNS3-DEVICES")
