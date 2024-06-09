@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Network Report</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/inventory.css') }}">
+</head>
+
+<body>
+    <h1>Network Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Hostname</th>
+                <th>Model</th>
+                <th>Software version</th>
+                <th>Serial number</th>
+                <th>Register date</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for device in devices %}
+            <tr>
+                <td>{{ device.id_device }}</td>
+                <td>{{ device.hostname }}</td>
+                <td>{{ device.model }}</td>
+                <td>{{ device.software_version }}</td>
+                <td>{{ device.serial_number }}</td>
+                <td>{{ device.datetime }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

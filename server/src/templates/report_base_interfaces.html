@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Network Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Network Report</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Id device</th>
+                <th>Id interface</th>
+                <th>Interface Name</th>
+                <th>IP address</th>
+                <th>Subnet mask</th>
+                <th>cdp state</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for interface in interfaces %}
+            <tr>
+                <td>{{ interface.id_device }}</td>
+                <td>{{ interface.id_interface }}</td>
+                <td>{{ interface.interface_name }}</td>
+                <td>{{ interface.ip_address }}</td>
+                <td>{{ interface.subnet_mask }}</td>
+                <td>{{ interface.cdp_state }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+
+</html>

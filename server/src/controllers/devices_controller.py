@@ -16,8 +16,24 @@ class DevicesController:
         return insertObject
 
     @staticmethod
-    async def get_by_id(dId):
-        pass
+    def get_by_id(dId):
+        # Obtiene el resultado de la consulta
+        result = DeviceModelSQL.get_by_id(dId)
+
+        # Verifica si el resultado es None
+        if result is None:
+            return None
+
+        
+        device, column_description = result
+
+        if device is not None:
+            # Convierte la fila del dispositivo en un diccionario
+            column_names = [column[0] for column in column_description]
+            record_dict = dict(zip(column_names, device))
+            return record_dict
+
+        return None
 
     @staticmethod
     def create(ip, endpoint):

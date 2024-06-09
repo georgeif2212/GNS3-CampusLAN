@@ -5,11 +5,15 @@ import subprocess
 import json
 from flask import jsonify
 
+import uuid
+
+
 load_dotenv()
 
 default_query_ip = "192.168.122.202"
 query_base = "/restconf/data/Cisco-IOS-XE"
 endpoint_native = "-native:native/"
+endpoint_arp="-arp-oper:arp-data/"
 
 # Datos de autenticación
 username = os.getenv("USERNAME-GNS3-DEVICES")
@@ -89,3 +93,11 @@ def get_nested(dictionary, keys, default=None):
         if dictionary is default:
             break
     return dictionary
+
+
+def is_valid_uuid(value):
+    try:
+        uuid.UUID(value)
+        return True
+    except ValueError:
+        return False

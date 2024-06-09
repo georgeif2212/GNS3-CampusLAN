@@ -1,21 +1,23 @@
-from flask import Flask, request, jsonify
-from db.sql_server import cursor as db_cursor
-import requests
-import os
+from flask import Flask, jsonify
+
+
 
 from routers.api.devices_router import devices_router
 from routers.api.interfaces_router import interfaces_router
 from routers.api.queries_router import queries_router
+from routers.reports.reports_router import reports_router
+from routers.api.arp_router import arp_router
 
 from bfs import bfs_algorithm
-from utils.utils import build_request_command
 from werkzeug.exceptions import HTTPException
 
 app = Flask(__name__)
 
 # Registrar los Blueprints en la aplicación
+app.register_blueprint(reports_router, url_prefix="/reports")
 app.register_blueprint(devices_router, url_prefix="/api/devices")
 app.register_blueprint(interfaces_router, url_prefix="/api/interfaces")
+app.register_blueprint(arp_router, url_prefix="/api/arp")
 app.register_blueprint(queries_router, url_prefix="/api")
 
 
@@ -30,13 +32,12 @@ def topology():
 @app.errorhandler(HTTPException)
 def handle_http_exception(e):
     response = e.get_response()
-    response.data = jsonify({
-        "status": e.code,
-        "error": e.name,
-        "message": e.description
-    }).data
+    response.data = jsonify(
+        {"status": e.code, "error": e.name, "message": e.description}
+    ).data
     response.content_type = "application/json"
     return response
+
 
 # Manejador de errores para cualquier excepción no manejada
 @app.errorhandler(Exception)
@@ -44,11 +45,7 @@ def handle_exception(e):
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
-    response = jsonify({
-        "status": code,
-        "error": type(e).__name__,
-        "message": str(e)
-    })
+    response = jsonify({"status": code, "error": type(e).__name__, "message": str(e)})
     return response, code
 
 
