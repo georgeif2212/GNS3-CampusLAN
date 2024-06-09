@@ -5,6 +5,9 @@ import subprocess
 import json
 from flask import jsonify
 
+import uuid
+
+
 load_dotenv()
 
 default_query_ip = "192.168.122.202"
@@ -90,3 +93,11 @@ def get_nested(dictionary, keys, default=None):
         if dictionary is default:
             break
     return dictionary
+
+
+def is_valid_uuid(value):
+    try:
+        uuid.UUID(value)
+        return True
+    except ValueError:
+        return False
