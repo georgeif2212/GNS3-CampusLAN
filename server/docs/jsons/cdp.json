@@ -2,10 +2,10 @@
   "Cisco-IOS-XE-cdp-oper:cdp-neighbor-details": {
     "cdp-neighbor-detail": [
       {
-        "device-id": 2041,
-        "device-name": "Router",
+        "device-id": 413,
+        "device-name": "distribution_4",
         "local-intf-name": "GigabitEthernet2",
-        "port-id": "GigabitEthernet4",
+        "port-id": "GigabitEthernet2",
         "capability": "Router IGMP ",
         "platform-name": "cisco CSR1000V",
         "version": "Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 22-Aug-19 18:03 by mcpre",
@@ -40,8 +40,196 @@
           "spare-pair-pd-config": "cdp-disable",
           "spare-pair-pse-operational": "cdp-no"
         },
-        "mgmt-address": "192.168.10.14",
-        "ip-address": "192.168.10.14",
+        "mgmt-address": "192.168.10.25",
+        "ip-address": "192.168.10.25",
+        "clns-address": "",
+        "decnet-addr": "",
+        "novell-addr": "",
+        "second-port-status": "",
+        "table-id": 0
+      },
+      {
+        "device-id": 2454,
+        "device-name": "distribution_5",
+        "local-intf-name": "GigabitEthernet1",
+        "port-id": "GigabitEthernet2",
+        "capability": "Router IGMP ",
+        "platform-name": "cisco CSR1000V",
+        "version": "Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 22-Aug-19 18:03 by mcpre",
+        "duplex": "cdp-full-duplex",
+        "adv-version": "cdp-advertised-v2",
+        "hello-message": {
+          "oui": "",
+          "protocol-id": "",
+          "payload-value": "",
+          "payload-len": 0
+        },
+        "vty-mgmt-domain": "",
+        "native-vlan": 0,
+        "vvid-tag": 0,
+        "vvid": 0,
+        "power": 0,
+        "power-request": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-request-level": "0 0 0 0 0"
+        },
+        "power-available": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-available": 0,
+          "power-man-level": 0
+        },
+        "unidirectional-mode": "cdp-uni-mode-off",
+        "spare-pair": {
+          "spare-pair-poe": "cdp-no",
+          "spare-pair-detection-required": "cdp-no",
+          "spare-pair-pd-config": "cdp-disable",
+          "spare-pair-pse-operational": "cdp-no"
+        },
+        "mgmt-address": "192.168.10.33",
+        "ip-address": "192.168.10.33",
+        "clns-address": "",
+        "decnet-addr": "",
+        "novell-addr": "",
+        "second-port-status": "",
+        "table-id": 0
+      },
+      {
+        "device-id": 4289,
+        "device-name": "distribution_1",
+        "local-intf-name": "GigabitEthernet5",
+        "port-id": "GigabitEthernet2",
+        "capability": "Router IGMP ",
+        "platform-name": "cisco CSR1000V",
+        "version": "Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 22-Aug-19 18:03 by mcpre",
+        "duplex": "cdp-full-duplex",
+        "adv-version": "cdp-advertised-v2",
+        "hello-message": {
+          "oui": "",
+          "protocol-id": "",
+          "payload-value": "",
+          "payload-len": 0
+        },
+        "vty-mgmt-domain": "",
+        "native-vlan": 0,
+        "vvid-tag": 0,
+        "vvid": 0,
+        "power": 0,
+        "power-request": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-request-level": "0 0 0 0 0"
+        },
+        "power-available": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-available": 0,
+          "power-man-level": 0
+        },
+        "unidirectional-mode": "cdp-uni-mode-off",
+        "spare-pair": {
+          "spare-pair-poe": "cdp-no",
+          "spare-pair-detection-required": "cdp-no",
+          "spare-pair-pd-config": "cdp-disable",
+          "spare-pair-pse-operational": "cdp-no"
+        },
+        "mgmt-address": "192.168.10.5",
+        "ip-address": "192.168.10.5",
+        "clns-address": "",
+        "decnet-addr": "",
+        "novell-addr": "",
+        "second-port-status": "",
+        "table-id": 0
+      },
+      {
+        "device-id": 6330,
+        "device-name": "distribution_2",
+        "local-intf-name": "GigabitEthernet4",
+        "port-id": "GigabitEthernet2",
+        "capability": "Router IGMP ",
+        "platform-name": "cisco CSR1000V",
+        "version": "Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 22-Aug-19 18:03 by mcpre",
+        "duplex": "cdp-full-duplex",
+        "adv-version": "cdp-advertised-v2",
+        "hello-message": {
+          "oui": "",
+          "protocol-id": "",
+          "payload-value": "",
+          "payload-len": 0
+        },
+        "vty-mgmt-domain": "",
+        "native-vlan": 0,
+        "vvid-tag": 0,
+        "vvid": 0,
+        "power": 0,
+        "power-request": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-request-level": "0 0 0 0 0"
+        },
+        "power-available": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-available": 0,
+          "power-man-level": 0
+        },
+        "unidirectional-mode": "cdp-uni-mode-off",
+        "spare-pair": {
+          "spare-pair-poe": "cdp-no",
+          "spare-pair-detection-required": "cdp-no",
+          "spare-pair-pd-config": "cdp-disable",
+          "spare-pair-pse-operational": "cdp-no"
+        },
+        "mgmt-address": "192.168.10.13",
+        "ip-address": "192.168.10.13",
+        "clns-address": "",
+        "decnet-addr": "",
+        "novell-addr": "",
+        "second-port-status": "",
+        "table-id": 0
+      },
+      {
+        "device-id": 8372,
+        "device-name": "distribution_3",
+        "local-intf-name": "GigabitEthernet3",
+        "port-id": "GigabitEthernet2",
+        "capability": "Router IGMP ",
+        "platform-name": "cisco CSR1000V",
+        "version": "Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 22-Aug-19 18:03 by mcpre",
+        "duplex": "cdp-full-duplex",
+        "adv-version": "cdp-advertised-v2",
+        "hello-message": {
+          "oui": "",
+          "protocol-id": "",
+          "payload-value": "",
+          "payload-len": 0
+        },
+        "vty-mgmt-domain": "",
+        "native-vlan": 0,
+        "vvid-tag": 0,
+        "vvid": 0,
+        "power": 0,
+        "power-request": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-request-level": "0 0 0 0 0"
+        },
+        "power-available": {
+          "power-request-id": 0,
+          "power-man-id": 0,
+          "power-available": 0,
+          "power-man-level": 0
+        },
+        "unidirectional-mode": "cdp-uni-mode-off",
+        "spare-pair": {
+          "spare-pair-poe": "cdp-no",
+          "spare-pair-detection-required": "cdp-no",
+          "spare-pair-pd-config": "cdp-disable",
+          "spare-pair-pse-operational": "cdp-no"
+        },
+        "mgmt-address": "192.168.10.21",
+        "ip-address": "192.168.10.21",
         "clns-address": "",
         "decnet-addr": "",
         "novell-addr": "",

@@ -1,31 +1,61 @@
 {
-    "lldp": {
-        "Cisco-IOS-XE-lldp-oper:lldp-entries": {
-            "lldp-entry": [
-                {
-                    "capabilities": {
-                        "router": [
-                            null
-                        ]
-                    },
-                    "connecting-interface": "Gi4",
-                    "device-id": "Router",
-                    "local-interface": "Gi2",
-                    "ttl": 120
-                },
-                {
-                    "capabilities": {
-                        "router": [
-                            null
-                        ]
-                    },
-                    "connecting-interface": "Gi4",
-                    "device-id": "Router",
-                    "local-interface": "Gi1",
-                    "ttl": 120
+    "Cisco-IOS-XE-lldp-oper:lldp-entries": {
+        "lldp-entry": [
+            {
+                "device-id": "distribution_1",
+                "local-interface": "Gi5",
+                "connecting-interface": "Gi2",
+                "ttl": 120,
+                "capabilities": {
+                    "router": [
+                        null
+                    ]
                 }
-            ]
-        }
-    },
-    "message": "Data received"
+            },
+            {
+                "device-id": "distribution_2",
+                "local-interface": "Gi4",
+                "connecting-interface": "Gi2",
+                "ttl": 120,
+                "capabilities": {
+                    "router": [
+                        null
+                    ]
+                }
+            },
+            {
+                "device-id": "distribution_4",
+                "local-interface": "Gi2",
+                "connecting-interface": "Gi2",
+                "ttl": 120,
+                "capabilities": {
+                    "router": [
+                        null
+                    ]
+                }
+            },
+            {
+                "device-id": "distribution_3",
+                "local-interface": "Gi3",
+                "connecting-interface": "Gi2",
+                "ttl": 120,
+                "capabilities": {
+                    "router": [
+                        null
+                    ]
+                }
+            },
+            {
+                "device-id": "distribution_5",
+                "local-interface": "Gi1",
+                "connecting-interface": "Gi2",
+                "ttl": 120,
+                "capabilities": {
+                    "router": [
+                        null
+                    ]
+                }
+            }
+        ]
+    }
 }
