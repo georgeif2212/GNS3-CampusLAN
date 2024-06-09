@@ -18,31 +18,43 @@ class CdpModelSQL:
     @staticmethod
     def create(data):
         query = """INSERT INTO cdp_neighbors 
-                    (id_device, ip_address, encryption_type, interface_name, link_type, cdp_mode, hardware_type, mac_address) 
-                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
-        db_cursor.execute(
-            query,
-            (
-                data["id_device"],
-                data["ip_address"],
-                data["encryption_type"],
-                data["interface_name"],
-                data["link_type"],
-                data["cdp_mode"],
-                data["hardware_type"],
-                data["mac_address"],
-            ),
-        )
-        db_cursor.commit()
+                    (id_device, neighbor_id_device, neighbor_device_name, local_interface_name, neighbor_interface_name, 
+                    capability, platform, software_version, duplex, advertisement_version, 
+                    neighbor_ip_address) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)"""
 
-        # Obtain the number of affected rows
-        rows_affected = db_cursor.rowcount
+        try:
+            db_cursor.execute(
+                query,
+                (
+                    data["id_device"],
+                    data["neighbor_id_device"],
+                    data["neighbor_device_name"],
+                    data["local_interface_name"],
+                    data["neighbor_interface_name"],
+                    data["capability"],
+                    data["platform"],
+                    data["software_version"],
+                    data["duplex"],
+                    data["advertisement_version"],
+                    data["neighbor_ip_address"],
+                ),
+            )
+            db_cursor.commit()
 
-        if rows_affected > 0:
-            print("Successful insertion")
-            return build_success_response_create
-        else:
-            print("Failed insertion")
+            # Obtain the number of affected rows
+            rows_affected = db_cursor.rowcount
+
+            if rows_affected > 0:
+                print("Successful insertion")
+                return build_success_response_create
+            else:
+                print("Failed insertion")
+                return build_fail_response_create
+
+        except Exception as e:
+            print("Error inserting CDP data:", e)
+            db_cursor.rollback()  # Rollback if there is an error
             return build_fail_response_create
 
     @staticmethod
