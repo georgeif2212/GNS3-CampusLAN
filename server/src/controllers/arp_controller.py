@@ -1,10 +1,13 @@
 from model.arp_model import ArpModelSQL
+from controllers.devices_controller import DevicesController
+from controllers.interfaces_controller import InterfacesController
 from model.devices_model import DeviceModelSQL
 from utils.utils import (
     query_to_GNS3,
     default_query_ip,
     get_nested,
     build_success_response_create,
+    is_valid_uuid,
 )
 from flask import abort
 
@@ -28,15 +31,33 @@ class ArpController:
 
     @staticmethod
     def create(request, endpoint):
-        ip_address = request.get("ip", default_query_ip)
         id_device = request.get("id_device")
-
         if not id_device:
-            abort(400, description=" id_device is missing")
+            abort(400, description="missing UUID")
 
-        gns3_data = query_to_GNS3(ip_address, endpoint)
-        insert_interfaces(gns3_data, id_device)
+        if not is_valid_uuid(id_device):
+            abort(400, description="invalid UUID Format")
+
+        device = DevicesController.get_by_id(id_device)
+        print("device", device)
+        if not device:
+            abort(400, description="device not found")
+
+        ip_address_from_device = InterfacesController.get_ip_address_by_id_device(
+            device["id_device"]
+        )
+        print(f"ipaddress: {ip_address_from_device}")
+
+        gns3_data = query_to_GNS3(ip_address_from_device, endpoint)
+
+        if gns3_data.get("status") == "Error executing curl command":
+            abort(400, description=gns3_data.get("error", "Error connecting to GNS3"))
+
+        print(gns3_data)
+
+        insert_arp_entries(gns3_data, id_device)
         return build_success_response_create
+
 
     @staticmethod
     async def update_by_id(dId, data):
@@ -47,27 +68,26 @@ class ArpController:
         pass
 
 
-def insert_interfaces(gns3_data, id_device):
-    interfaces = (
-        gns3_data.get("Cisco-IOS-XE-native:native", {})
-        .get("interface", {})
-        .get("GigabitEthernet", [])
-    )
+def insert_arp_entries(gns3_data, id_device):
+    arp_entries = gns3_data.get("Cisco-IOS-XE-arp-oper:arp-data", {}).get("arp-vrf", [])
 
-    for interface in interfaces:
-        interface_name = f"GigabitEthernet{interface.get('name')}"
-        ip_address = get_nested(interface, ["ip", "address", "primary", "address"], "")
-        mask = get_nested(interface, ["ip", "address", "primary", "mask"], "")
-        cdp_state = get_nested(interface, ["Cisco-IOS-XE-cdp:cdp", "enable"], False)
+    for vrf in arp_entries:
+        for arp_oper in vrf.get("arp-oper", []):
+            data = {
+                "id_device": id_device,
+                "ip_address": arp_oper.get("address", ""),
+                "encryption_type": arp_oper.get("enctype", ""),
+                "interface_name": arp_oper.get("interface", ""),
+                "link_type": arp_oper.get("type", ""),
+                "arp_mode": arp_oper.get("mode", ""),
+                "hardware_type": arp_oper.get("hwtype", ""),
+                "mac_address": arp_oper.get("hardware", ""),
+            }
 
-        data = {
-            "id_device": id_device,
-            "interface_name": interface_name,
-            "ip_address": ip_address,
-            "mask": mask,
-            "cdp_state": cdp_state,
-        }
-        print(data)
-        ArpModelSQL.create(data)
+            # Print the data for debugging
+            print("ARP Entry Data:", data)
+
+            # Insert the data into the database
+            ArpModelSQL.create(data)
 
     return {}
