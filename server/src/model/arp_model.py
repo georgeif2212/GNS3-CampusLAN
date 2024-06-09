@@ -16,25 +16,22 @@ class ArpModelSQL:
         return result, column_description
 
     @staticmethod
-    def get_by_hostname(hostname):
-        query = "SELECT id_device FROM devices WHERE hostname = ?"
-        db_cursor.execute(query, (hostname))
-        result = db_cursor.fetchone()
-        if result:
-            return {"id_device": result[0]}
-        return None
-
-    @staticmethod
     def create(data):
         print(f"data: {data}")
-        query = "INSERT INTO devices (hostname, software_version, model, serial_number) VALUES (?, ?, ?, ?)"
+        query = """INSERT INTO arp 
+                    (id_device, ip_address, encryption_type, interface_name, link_type, arp_mode, hardware_type, mac_address) 
+                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)"""
         db_cursor.execute(
             query,
             (
-                data["nombre_host"],
-                data["version_software"],
-                data["modelo"],
-                data["numero_serie"],
+                data["id_device"],
+                data["ip_address"],
+                data["encryption_type"],
+                data["interface_name"],
+                data["link_type"],
+                data["arp_mode"],
+                data["hardware_type"],
+                data["mac_address"],
             ),
         )
         db_cursor.commit()
