@@ -23,6 +23,18 @@ class InterfaceModelSQL:
     @staticmethod
     def getFilter(criteria=None, params=None):
         pass
+    
+    @staticmethod
+    def get_ip_address_by_id_device(did):
+        query = """
+            SELECT TOP 1 ip_address FROM interfaces
+            WHERE id_device = ? AND ip_address IS NOT NULL """
+        db_cursor.execute(query, (did,))
+        result = db_cursor.fetchone()
+        if result:
+            return result
+        return None
+
 
     @staticmethod
     def create(data):
