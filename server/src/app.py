@@ -1,12 +1,11 @@
 from flask import Flask, jsonify
 
-
-
 from routers.api.devices_router import devices_router
 from routers.api.interfaces_router import interfaces_router
 from routers.api.queries_router import queries_router
 from routers.reports.reports_router import reports_router
 from routers.api.arp_router import arp_router
+from routers.api.cdp_router import cdp_router
 
 from bfs import bfs_algorithm
 from werkzeug.exceptions import HTTPException
@@ -18,6 +17,7 @@ app.register_blueprint(reports_router, url_prefix="/reports")
 app.register_blueprint(devices_router, url_prefix="/api/devices")
 app.register_blueprint(interfaces_router, url_prefix="/api/interfaces")
 app.register_blueprint(arp_router, url_prefix="/api/arp")
+app.register_blueprint(cdp_router, url_prefix="/api/cdp")
 app.register_blueprint(queries_router, url_prefix="/api")
 
 

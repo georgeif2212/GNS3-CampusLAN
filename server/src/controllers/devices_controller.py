@@ -36,6 +36,25 @@ class DevicesController:
         return None
 
     @staticmethod
+    def get_device_by_hostname(hostname):
+        # Obtiene el resultado de la consulta
+        result = DeviceModelSQL.get_device_by_hostname(hostname)
+
+        # Verifica si el resultado es None
+        if result is None:
+            return None
+
+        device, column_description = result
+
+        if device is not None:
+            # Convierte la fila del dispositivo en un diccionario
+            column_names = [column[0] for column in column_description]
+            record_dict = dict(zip(column_names, device))
+            return record_dict
+
+        return None
+
+    @staticmethod
     def create(ip, endpoint):
         json_data = query_to_GNS3(ip, endpoint)
         data = {

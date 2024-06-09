@@ -30,12 +30,14 @@ class DeviceModelSQL:
 
 
     @staticmethod
-    def get_by_hostname(hostname):
-        query = "SELECT id_device FROM devices WHERE hostname = ?"
+    def get_device_by_hostname(hostname):
+        query = "SELECT * FROM devices WHERE hostname = ?"
         db_cursor.execute(query, (hostname))
         result = db_cursor.fetchone()
+        column_description = db_cursor.description
         if result:
-            return {"id_device": result[0]}
+            return result, column_description
+        
         return None
 
 
