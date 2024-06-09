@@ -27,6 +27,11 @@ class InterfacesController:
         pass
 
     @staticmethod
+    def get_ip_address_by_id_device(did):
+        ip_address = InterfaceModelSQL.get_ip_address_by_id_device(did)
+        return ip_address[0]
+
+    @staticmethod
     def create(request, endpoint):
         ip_address = request.get("ip", default_query_ip)
         id_device = request.get("id_device")
