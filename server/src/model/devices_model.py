@@ -2,6 +2,7 @@ from db.sql_server import cursor as db_cursor, conn as db_connection
 from utils.utils import build_fail_response_create, build_success_response_create
 from sqlalchemy.exc import IntegrityError, OperationalError
 
+
 class DeviceModelSQL:
     @staticmethod
     def get(criteria=None):
@@ -15,6 +16,19 @@ class DeviceModelSQL:
 
         return result, column_description
 
+
+    @staticmethod
+    def get_by_id(did):
+        query = "SELECT * FROM devices WHERE id_device = ?"
+        db_cursor.execute(query, (did,))
+        result = db_cursor.fetchone()
+        column_description = db_cursor.description
+        if result:
+            return result, column_description
+
+        return None
+
+
     @staticmethod
     def get_by_hostname(hostname):
         query = "SELECT id_device FROM devices WHERE hostname = ?"
@@ -23,6 +37,7 @@ class DeviceModelSQL:
         if result:
             return {"id_device": result[0]}
         return None
+
 
     @staticmethod
     def create(data):
@@ -63,13 +78,13 @@ class DeviceModelSQL:
             return {"error": str(e), "status": 500}
 
 
-
     @staticmethod
     def update_by_id(did, data):
         query = "UPDATE devices SET name = ?, price = ? WHERE id = ?"
         db_cursor.execute(query, (data["name"], data["price"], did))
         db_cursor.commit()
         return True  # Assuming successful update
+
 
     @staticmethod
     def delete_by_id(did):
