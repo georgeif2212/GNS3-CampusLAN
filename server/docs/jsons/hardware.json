@@ -1,0 +1,55 @@
+{
+    "Cisco-IOS-XE-device-hardware-oper:device-hardware-data": {
+        "device-hardware": {
+            "device-inventory": [
+                {
+                    "hw-type": "hw-type-chassis",
+                    "hw-dev-index": 0,
+                    "version": "V00",
+                    "part-number": "CSR1000V",
+                    "serial-number": "9D3WSC4GWGG",
+                    "hw-description": "Cisco CSR1000V Chassis"
+                },
+                {
+                    "hw-type": "hw-type-pim",
+                    "hw-dev-index": 1,
+                    "version": "V00",
+                    "part-number": "CSR1000V",
+                    "serial-number": "JAB1303001C",
+                    "hw-description": "Cisco CSR1000V Route Processor"
+                },
+                {
+                    "hw-type": "hw-type-pim",
+                    "hw-dev-index": 2,
+                    "version": "",
+                    "part-number": "CSR1000V",
+                    "serial-number": "",
+                    "hw-description": "Cisco CSR1000V Embedded Services Processor"
+                },
+                {
+                    "hw-type": "hw-type-dram",
+                    "hw-dev-index": 3,
+                    "version": "",
+                    "part-number": "",
+                    "serial-number": "",
+                    "hw-description": "Physical Memory"
+                },
+                {
+                    "hw-type": "hw-type-cpu",
+                    "hw-dev-index": 4,
+                    "version": " 6",
+                    "part-number": " GenuineIntel",
+                    "serial-number": "",
+                    "hw-description": " QEMU Virtual CPU version 2.5+"
+                }
+            ],
+            "device-system-data": {
+                "current-time": "2024-04-30T15:41:02+00:00",
+                "boot-time": "2024-04-29T01:05:03+00:00",
+                "software-version": "Cisco IOS Software [Fuji], Virtual XE Software (X86_64_LINUX_IOSD-UNIVERSALK9-M), Version 16.9.4, RELEASE SOFTWARE (fc2)\nTechnical Support: http://www.cisco.com/techsupport\nCopyright (c) 1986-2019 by Cisco Systems, Inc.\nCompiled Thu 22-Aug-19 18:03 by mcpre",
+                "rommon-version": "\r\nIOS-XE ROMMON\n",
+                "last-reboot-reason": "reload"
+            }
+        }
+    }
+}
