@@ -27,8 +27,12 @@ class InterfaceModelSQL:
     @staticmethod
     def get_ip_address_by_id_device(did):
         query = """
-            SELECT TOP 1 ip_address FROM interfaces
-            WHERE id_device = ? AND ip_address IS NOT NULL """
+            SELECT TOP 1 ip_address 
+                FROM interfaces 
+                WHERE id_device = ?
+                AND ip_address IS NOT NULL 
+                AND ip_address <> '' 
+                """
         db_cursor.execute(query, (did,))
         result = db_cursor.fetchone()
         if result:
