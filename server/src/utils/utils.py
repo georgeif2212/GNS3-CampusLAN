@@ -33,6 +33,27 @@ build_fail_response_create = {
     "message": "The resource hasn't been created",
 }
 
+build_success_response_update = {
+    "status": "success",
+    "message": "The resource has been updated successfully",
+}
+
+build_fail_response_update = {
+    "status": "failed",
+    "message": "The resource hasn't been updated",
+}
+
+build_success_response_delete = {
+    "status": "success",
+    "message": "The resource has been deleted successfully",
+}
+
+build_fail_response_delete = {
+    "status": "failed",
+    "message": "The resource hasn't been deleted",
+}
+
+
 
 def build_curl_command(ip_address, endpoint):
     command = [
@@ -102,3 +123,7 @@ def is_valid_uuid(value):
         return True
     except ValueError:
         return False
+
+
+def rows_to_dict(result,columns):
+    return dict(zip([column[0] for column in columns], result))
