@@ -80,6 +80,40 @@ class OspfModelSQL:
             db_connection.rollback()
             return {"error": str(e), "status": 500}
 
+    @staticmethod
+    def create_ospf_table_entry(ospf_table_data):
+        query = "INSERT INTO ospf_table (device_id, ospf_process_id) VALUES (?, ?)"
+        try:
+            db_cursor.execute(
+                query,
+                (
+                    ospf_table_data["device_id"],
+                    ospf_table_data["ospf_process_id"],
+                ),
+            )
+            db_connection.commit()  # Asegúrate de usar db_connection.commit()
+
+            # Obtener el número de filas afectadas
+            rows_affected = db_cursor.rowcount
+
+            if rows_affected > 0:
+                print("Successful insertion")
+                return build_success_response_create
+            else:
+                print("Failed insertion")
+                return build_fail_response_create
+        except IntegrityError as e:
+            db_connection.rollback()  # Rollback en caso de error
+            if "2627" in str(e):  # Código de error para clave duplicada
+                return {"error": "Duplicate hostname", "status": 400}
+            else:
+                return {"error": str(e), "status": 500}
+        except OperationalError as e:
+            db_connection.rollback()  # Rollback en caso de error
+            return {"error": str(e), "status": 500}
+        except Exception as e:
+            db_connection.rollback()  # Rollback en caso de error general
+            return {"error": str(e), "status": 500}
     
     @staticmethod
     def update_ospf_by_id(ospf_id, data):
