@@ -10,6 +10,7 @@ from routers.api.ospf_router import ospf_router
 
 from bfs import bfs_algorithm
 from werkzeug.exceptions import HTTPException
+from utils.utils import query_to_GNS3
 
 app = Flask(__name__)
 
@@ -28,6 +29,12 @@ def topology():
     topology = bfs_algorithm()
 
     return jsonify(topology)
+
+@app.route("/test", methods=["GET"])
+def test():
+    gns3_data= query_to_GNS3("192.168.10.14", "-native:native/")
+
+    return jsonify(gns3_data)
 
 
 # Manejador de errores para excepciones específicas
