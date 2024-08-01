@@ -36,35 +36,23 @@ class OspfModelSQL:
         return None
 
     @staticmethod
-    def create(data):
+    def create_ospf_networks_entry(data):
         try:
-            query_ospf = """
-                INSERT INTO ospf_table (device_id, ospf_process_id)
-                VALUES (?, ?)
-            """
-            db_cursor.execute(
-                query_ospf,
-                (
-                    data["device_id"],
-                    data["ospf_process_id"]
-                ),
-            )
-            
             # Insertar en ospf_networks
             query_networks = """
-                INSERT INTO ospf_networks (ospf_process_id, network_ip_address, mask, area)
-                VALUES (?, ?, ?, ?)
+                INSERT INTO ospf_networks (ospf_process_id, id_device, network_ip_address, mask, area)
+                VALUES (?, ?, ?, ?, ?)
             """
-            for network in data["networks"]:
-                db_cursor.execute(
-                    query_networks,
-                    (
-                        data["ospf_process_id"],
-                        network["network_ip_address"],
-                        network["mask"],
-                        network["area"]
-                    ),
-                )
+            db_cursor.execute(
+                query_networks,
+                (
+                    data["ospf_process_id"],
+                    data["id_device"],
+                    data["network_ip_address"],
+                    data["mask"],
+                    data["area"]
+                ),
+            )
 
             db_cursor.commit()
             # Obtain the number of affected rows
@@ -92,6 +80,7 @@ class OspfModelSQL:
             db_connection.rollback()
             return {"error": str(e), "status": 500}
 
+    
     @staticmethod
     def update_ospf_by_id(ospf_id, data):
         try:
