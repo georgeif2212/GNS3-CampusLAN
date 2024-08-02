@@ -6,9 +6,11 @@ from routers.api.queries_router import queries_router
 from routers.reports.reports_router import reports_router
 from routers.api.arp_router import arp_router
 from routers.api.cdp_router import cdp_router
+from routers.api.ospf_router import ospf_router
 
 from bfs import bfs_algorithm
 from werkzeug.exceptions import HTTPException
+from utils.utils import query_to_GNS3
 
 app = Flask(__name__)
 
@@ -18,6 +20,7 @@ app.register_blueprint(devices_router, url_prefix="/api/devices")
 app.register_blueprint(interfaces_router, url_prefix="/api/interfaces")
 app.register_blueprint(arp_router, url_prefix="/api/arp")
 app.register_blueprint(cdp_router, url_prefix="/api/cdp")
+app.register_blueprint(ospf_router, url_prefix="/api/ospf")
 app.register_blueprint(queries_router, url_prefix="/api")
 
 
@@ -26,6 +29,12 @@ def topology():
     topology = bfs_algorithm()
 
     return jsonify(topology)
+
+@app.route("/test", methods=["GET"])
+def test():
+    gns3_data= query_to_GNS3("192.168.10.14", "-native:native/")
+
+    return jsonify(gns3_data)
 
 
 # Manejador de errores para excepciones específicas
