@@ -7,6 +7,8 @@ from routers.reports.reports_router import reports_router
 from routers.api.arp_router import arp_router
 from routers.api.cdp_router import cdp_router
 from routers.api.ospf_router import ospf_router
+from routers.api.hardware_router import hardware_router
+
 
 from bfs import bfs_algorithm
 from werkzeug.exceptions import HTTPException
@@ -19,6 +21,7 @@ app.register_blueprint(reports_router, url_prefix="/reports")
 app.register_blueprint(devices_router, url_prefix="/api/devices")
 app.register_blueprint(interfaces_router, url_prefix="/api/interfaces")
 app.register_blueprint(arp_router, url_prefix="/api/arp")
+app.register_blueprint(hardware_router, url_prefix="/api/hardware")
 app.register_blueprint(cdp_router, url_prefix="/api/cdp")
 app.register_blueprint(ospf_router, url_prefix="/api/ospf")
 app.register_blueprint(queries_router, url_prefix="/api")
