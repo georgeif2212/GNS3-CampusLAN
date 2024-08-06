@@ -6,6 +6,13 @@ import pdfkit
 
 reports_router = Blueprint("reports", __name__)
 
+@reports_router.route("/devices/<did>")
+def device_report(did):
+    result = DevicesController.create_report_device(did)
+    print(result)
+    return result
+
+
 
 @reports_router.route("/inventory")
 def devices_report():
