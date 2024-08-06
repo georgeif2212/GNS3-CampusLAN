@@ -1,6 +1,7 @@
 from model.interfaces_model import InterfaceModelSQL
 from model.devices_model import DeviceModelSQL
 import utils.utils as Utils
+from utils.CustomError import CustomError
 from flask import abort
 
 
@@ -23,7 +24,15 @@ class InterfacesController:
 
     @staticmethod
     def get_by_id_device(dId):
-        pass
+        result, column_description = InterfaceModelSQL.get_by_id_device(dId)
+        if not result:
+            raise CustomError(
+                name="No Interfaces Found",
+                cause=f"No interfaces found for device ID {dId}",
+                message=f"No interfaces found for device ID {dId}",
+                code=404
+            )
+        return Utils.convert_data_into_dict(result,column_description)
 
     @staticmethod
     def get_ip_address_by_id_device(did):
