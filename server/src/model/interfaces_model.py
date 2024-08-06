@@ -21,9 +21,20 @@ class InterfaceModelSQL:
         return result, column_description
 
     @staticmethod
+    def get_by_id_device(dId):
+        query = """SELECT 
+                    id_interface, interface_name, ip_address, subnet_mask, cdp_state, datetime  
+                    FROM interfaces WHERE id_device = ?"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
+
+    @staticmethod
     def getFilter(criteria=None, params=None):
         pass
-    
+
     @staticmethod
     def get_ip_address_by_id_device(did):
         query = """
@@ -38,7 +49,6 @@ class InterfaceModelSQL:
         if result:
             return result
         return None
-
 
     @staticmethod
     def create(data):
