@@ -99,6 +99,7 @@ class DevicesController:
         from controllers.arp_controller import ArpController
         from controllers.cdp_controller import CdpController
         from controllers.software_controller import SoftwareController
+        from controllers.hardware_controller import HardwareController
 
         # Obtiene el resultado de la consulta
         device = DevicesController.get_by_id(dId)
@@ -106,12 +107,14 @@ class DevicesController:
         arp_table = ArpController.get_by_id_device(dId)
         cdp_neighbors = CdpController.get_by_id_device(dId)
         software_device = SoftwareController.get_by_id_device(dId)
+        hardware_device = HardwareController.get_by_id_device(dId)
 
         device = {
             "device": {
                 "information": {
                     "device_information": device,
                     "software": software_device,
+                    "hardware": hardware_device,
                 },
                 "interfaces": interfaces,
                 "arp_table": arp_table,
