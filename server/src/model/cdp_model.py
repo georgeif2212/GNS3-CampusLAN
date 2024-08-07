@@ -16,6 +16,28 @@ class CdpModelSQL:
         return None
 
     @staticmethod
+    def get_by_id_device(dId):
+        query = """SELECT 
+                    id_cdp,
+                    neighbor_device_name,
+                    neighbor_id_device,
+                    advertisement_version,
+                    capability,
+                    datetime,
+                    duplex,
+                    local_interface_name,
+                    neighbor_interface_name,
+                    neighbor_ip_address,
+                    platform,
+                    software_version
+                FROM cdp_neighbors WHERE id_device = ?"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
+
+    @staticmethod
     def create(data):
         query = """INSERT INTO cdp_neighbors 
                     (id_device, neighbor_id_device, neighbor_device_name, local_interface_name, neighbor_interface_name, 
