@@ -1,13 +1,8 @@
 from model.hardware_model import HardwareModelSQL
 from controllers.devices_controller import DevicesController
 from controllers.interfaces_controller import InterfacesController
-from utils.utils import (
-    query_to_GNS3,
-    default_query_ip,
-    get_nested,
-    build_success_response_create,
-    is_valid_uuid,
-)
+import utils.utils as Utils
+import utils.CustomError as CustomError
 from flask import abort
 
 
@@ -29,12 +24,24 @@ class HardwareController:
         pass
 
     @staticmethod
+    def get_by_id_device(dId):
+        result, column_description = HardwareModelSQL.get_by_id_device(dId)
+        if not result:
+            raise CustomError(
+                name="No hardware table Found",
+                cause=f"No hardware data found for device ID {dId}",
+                message=f"No hardware data found for device ID {dId}",
+                code=404
+            )
+        return Utils.convert_data_into_dict(result,column_description)
+
+    @staticmethod
     def create(request, endpoint):
         id_device = request.get("id_device")
         if not id_device:
             abort(400, description="missing UUID")
 
-        if not is_valid_uuid(id_device):
+        if not Utils.is_valid_uuid(id_device):
             abort(400, description="invalid UUID Format")
 
         device = DevicesController.get_by_id(id_device)
@@ -47,7 +54,7 @@ class HardwareController:
         )
         print(f"ipaddress: {ip_address_from_device}")
 
-        gns3_data = query_to_GNS3(ip_address_from_device, endpoint)
+        gns3_data = Utils.query_to_GNS3(ip_address_from_device, endpoint)
 
         if gns3_data.get("status") == "Error executing curl command":
             abort(400, description=gns3_data.get("error", "Error connecting to GNS3"))
@@ -56,7 +63,7 @@ class HardwareController:
         
 
         insert_hardware_entries(gns3_data, id_device)
-        return build_success_response_create
+        return Utils.build_success_response_create
 
 
     @staticmethod
