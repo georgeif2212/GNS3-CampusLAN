@@ -1,8 +1,13 @@
 from db.sql_server import cursor as db_cursor
-from utils.utils import build_fail_response_create, build_success_response_create, build_success_response_delete
+from utils.utils import (
+    build_fail_response_create,
+    build_success_response_create,
+    build_success_response_delete,
+)
 
 from db.sql_server import cursor as db_cursor, conn as db_connection
 from sqlalchemy.exc import IntegrityError, OperationalError
+
 
 class OspfModelSQL:
     @staticmethod
@@ -24,6 +29,28 @@ class OspfModelSQL:
         if result:
             return result, column_description
         return None
+
+    @staticmethod
+    def get_by_id_device(dId):
+        query = """SELECT 
+                    *
+                FROM ospf_table WHERE device_id = ?"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
+    
+    @staticmethod
+    def get_networks_by_id_device(dId):
+        query = """SELECT 
+                    *
+                FROM ospf_networks WHERE id_device = ?"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
 
     @staticmethod
     def get_networks_by_ospf_process_id(ospf_process_id):
@@ -50,7 +77,7 @@ class OspfModelSQL:
                     data["id_device"],
                     data["network_ip_address"],
                     data["mask"],
-                    data["area"]
+                    data["area"],
                 ),
             )
 
@@ -114,7 +141,7 @@ class OspfModelSQL:
         except Exception as e:
             db_connection.rollback()  # Rollback en caso de error general
             return {"error": str(e), "status": 500}
-    
+
     @staticmethod
     def update_ospf_by_id(ospf_id, data):
         try:
@@ -129,11 +156,7 @@ class OspfModelSQL:
             """
             db_cursor.execute(
                 query_ospf,
-                (
-                    data["device_id"],
-                    data["ospf_process_id"],
-                    ospf_id
-                ),
+                (data["device_id"], data["ospf_process_id"], ospf_id),
             )
 
             # Borrar las redes antiguas y luego insertar las nuevas en ospf_networks
@@ -153,7 +176,7 @@ class OspfModelSQL:
                         data["ospf_process_id"],
                         network["network_ip_address"],
                         network["mask"],
-                        network["area"]
+                        network["area"],
                     ),
                 )
 
@@ -184,12 +207,16 @@ class OspfModelSQL:
             db_connection.begin()
 
             # Obtener ospf_process_id antes de borrar
-            query_get_process_id = "SELECT ospf_process_id FROM ospf_table WHERE ospf_id = ?"
+            query_get_process_id = (
+                "SELECT ospf_process_id FROM ospf_table WHERE ospf_id = ?"
+            )
             db_cursor.execute(query_get_process_id, (ospf_id,))
             ospf_process_id = db_cursor.fetchone()[0]
 
             # Borrar en ospf_networks
-            query_delete_networks = "DELETE FROM ospf_networks WHERE ospf_process_id = ?"
+            query_delete_networks = (
+                "DELETE FROM ospf_networks WHERE ospf_process_id = ?"
+            )
             db_cursor.execute(query_delete_networks, (ospf_process_id,))
 
             # Borrar en ospf_table
