@@ -1,11 +1,7 @@
 from model.interfaces_model import InterfaceModelSQL
 from model.devices_model import DeviceModelSQL
-from utils.utils import (
-    query_to_GNS3,
-    default_query_ip,
-    get_nested,
-    build_success_response_create,
-)
+import utils.utils as Utils
+from utils.CustomError import CustomError
 from flask import abort
 
 
@@ -23,8 +19,20 @@ class InterfacesController:
         return data
 
     @staticmethod
-    async def get_by_id(dId):
+    async def get_by_id(iId):
         pass
+
+    @staticmethod
+    def get_by_id_device(dId):
+        result, column_description = InterfaceModelSQL.get_by_id_device(dId)
+        if not result:
+            raise CustomError(
+                name="No Interfaces Found",
+                cause=f"No interfaces found for device ID {dId}",
+                message=f"No interfaces found for device ID {dId}",
+                code=404
+            )
+        return Utils.convert_data_into_dict(result,column_description)
 
     @staticmethod
     def get_ip_address_by_id_device(did):
@@ -33,19 +41,19 @@ class InterfacesController:
 
     @staticmethod
     def create(request, endpoint):
-        ip_address = request.get("ip", default_query_ip)
+        ip_address = request.get("ip", Utils.default_query_ip)
         id_device = request.get("id_device")
         hostname = request.get("hostname")
 
         if not id_device and not hostname:
             abort(400, description="Either id_device or hostname are missing")
 
-        gns3_data = query_to_GNS3(ip_address, endpoint)
+        gns3_data = Utils.query_to_GNS3(ip_address, endpoint)
 
         # If there is and id_devie, insert directly
         if id_device:
             insert_interfaces(gns3_data, id_device)
-            return build_success_response_create
+            return Utils.build_success_response_create
 
         # if the hostname came, first it has to get the id by the name
         if hostname:
@@ -55,7 +63,7 @@ class InterfacesController:
                 abort(404, description="Device with given hostname not found")
             insert_interfaces(gns3_data, id_device.get("id_device", {}))
 
-            return build_success_response_create
+            return Utils.build_success_response_create
 
     @staticmethod
     async def update_by_id(dId, data):
@@ -64,6 +72,7 @@ class InterfacesController:
     @staticmethod
     async def delete_by_id(dId):
         pass
+    
 
 
 def insert_interfaces(gns3_data, id_device):
@@ -75,9 +84,9 @@ def insert_interfaces(gns3_data, id_device):
 
     for interface in interfaces:
         interface_name = f"GigabitEthernet{interface.get('name')}"
-        ip_address = get_nested(interface, ["ip", "address", "primary", "address"], "")
-        mask = get_nested(interface, ["ip", "address", "primary", "mask"], "")
-        cdp_state = get_nested(interface, ["Cisco-IOS-XE-cdp:cdp", "enable"], False)
+        ip_address = Utils.get_nested(interface, ["ip", "address", "primary", "address"], "")
+        mask = Utils.get_nested(interface, ["ip", "address", "primary", "mask"], "")
+        cdp_state = Utils.get_nested(interface, ["Cisco-IOS-XE-cdp:cdp", "enable"], False)
 
         data = {
             "id_device": id_device,

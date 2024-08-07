@@ -128,3 +128,16 @@ def is_valid_uuid(value):
 
 def rows_to_dict(result,columns):
     return dict(zip([column[0] for column in columns], result))
+
+def convert_data_into_dict(result, column_description):
+    column_names = [column[0] for column in column_description]
+
+    if isinstance(result, list):
+        # Si el resultado es una lista de registros
+        insertObject = []
+        for record in result:
+            insertObject.append(dict(zip(column_names, record)))
+        return insertObject
+    else:
+        # Si el resultado es un solo registro
+        return dict(zip(column_names, result))

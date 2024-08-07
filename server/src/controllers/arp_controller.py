@@ -1,14 +1,7 @@
 from model.arp_model import ArpModelSQL
-from controllers.devices_controller import DevicesController
 from controllers.interfaces_controller import InterfacesController
-from model.devices_model import DeviceModelSQL
-from utils.utils import (
-    query_to_GNS3,
-    default_query_ip,
-    get_nested,
-    build_success_response_create,
-    is_valid_uuid,
-)
+import utils.utils as Utils
+from utils.CustomError import CustomError
 from flask import abort
 
 
@@ -30,16 +23,28 @@ class ArpController:
         pass
 
     @staticmethod
+    def get_by_id_device(dId):
+        result, column_description = ArpModelSQL.get_by_id_device(dId)
+        if not result:
+            raise CustomError(
+                name="No ARP table Found",
+                cause=f"No arp_table found for device ID {dId}",
+                message=f"No arp_table found for device ID {dId}",
+                code=404
+            )
+        return Utils.convert_data_into_dict(result,column_description)
+
+    @staticmethod
     def create(request, endpoint):
+        from controllers.devices_controller import DevicesController
         id_device = request.get("id_device")
         if not id_device:
             abort(400, description="missing UUID")
 
-        if not is_valid_uuid(id_device):
+        if not Utils.is_valid_uuid(id_device):
             abort(400, description="invalid UUID Format")
 
         device = DevicesController.get_by_id(id_device)
-        print("device", device)
         if not device:
             abort(400, description="device not found")
 
@@ -48,7 +53,7 @@ class ArpController:
         )
         print(f"ipaddress: {ip_address_from_device}")
 
-        gns3_data = query_to_GNS3(ip_address_from_device, endpoint)
+        gns3_data = Utils.query_to_GNS3(ip_address_from_device, endpoint)
 
         if gns3_data.get("status") == "Error executing curl command":
             abort(400, description=gns3_data.get("error", "Error connecting to GNS3"))
@@ -56,7 +61,7 @@ class ArpController:
         print(gns3_data)
 
         insert_arp_entries(gns3_data, id_device)
-        return build_success_response_create
+        return Utils.build_success_response_create
 
 
     @staticmethod
