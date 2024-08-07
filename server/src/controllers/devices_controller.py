@@ -2,6 +2,7 @@ from model.devices_model import DeviceModelSQL
 import utils.utils as Utils
 from utils.CustomError import CustomError 
 from controllers.interfaces_controller import InterfacesController
+
 import utils.utils as Utils
 
 
@@ -85,9 +86,11 @@ class DevicesController:
 
     @staticmethod
     def create_report_device(dId):
+        from controllers.arp_controller import ArpController
         # Obtiene el resultado de la consulta
         device = DevicesController.get_by_id(dId)
         interfaces = InterfacesController.get_by_id_device(dId)
+        arp_table = ArpController.get_by_id_device(dId)
 
-        return interfaces
+        return arp_table
 
