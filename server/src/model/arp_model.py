@@ -14,6 +14,24 @@ class ArpModelSQL:
         column_description = db_cursor.description
 
         return result, column_description
+    
+    @staticmethod
+    def get_by_id_device(dId):
+        query = """SELECT arp_mode,
+                        datetime,
+                        encryption_type,
+                        hardware_type,
+                        id_arp,
+                        interface_name,
+                        ip_address,
+                        link_type
+                        mac_address
+                    FROM arp WHERE id_device = ?"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
 
     @staticmethod
     def create(data):
