@@ -14,6 +14,22 @@ class SoftwareModelSQL:
         column_description = db_cursor.description
 
         return result, column_description
+    
+    @staticmethod
+    def get_by_id_device(dId):
+        query = """SELECT 
+                    id_software,
+                    current_time_device,
+                    boot_time,
+                    software_version,
+                    rommon_version,
+                    last_reboot_reason
+                FROM software WHERE id_device = ?"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
 
     @staticmethod
     def create(data):
