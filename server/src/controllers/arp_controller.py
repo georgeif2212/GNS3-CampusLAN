@@ -1,7 +1,5 @@
 from model.arp_model import ArpModelSQL
-from controllers.devices_controller import DevicesController
 from controllers.interfaces_controller import InterfacesController
-from model.devices_model import DeviceModelSQL
 import utils.utils as Utils
 from utils.CustomError import CustomError
 from flask import abort
@@ -29,15 +27,16 @@ class ArpController:
         result, column_description = ArpModelSQL.get_by_id_device(dId)
         if not result:
             raise CustomError(
-                name="No Interfaces Found",
-                cause=f"No interfaces found for device ID {dId}",
-                message=f"No interfaces found for device ID {dId}",
+                name="No ARP table Found",
+                cause=f"No arp_table found for device ID {dId}",
+                message=f"No arp_table found for device ID {dId}",
                 code=404
             )
         return Utils.convert_data_into_dict(result,column_description)
 
     @staticmethod
     def create(request, endpoint):
+        from controllers.devices_controller import DevicesController
         id_device = request.get("id_device")
         if not id_device:
             abort(400, description="missing UUID")
@@ -46,7 +45,6 @@ class ArpController:
             abort(400, description="invalid UUID Format")
 
         device = DevicesController.get_by_id(id_device)
-        print("device", device)
         if not device:
             abort(400, description="device not found")
 
