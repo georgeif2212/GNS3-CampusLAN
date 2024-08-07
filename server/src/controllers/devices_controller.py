@@ -100,6 +100,7 @@ class DevicesController:
         from controllers.cdp_controller import CdpController
         from controllers.software_controller import SoftwareController
         from controllers.hardware_controller import HardwareController
+        from controllers.ospf_controller import OSPFController
 
         # Obtiene el resultado de la consulta
         device = DevicesController.get_by_id(dId)
@@ -108,10 +109,10 @@ class DevicesController:
         cdp_neighbors = CdpController.get_by_id_device(dId)
         software_device = SoftwareController.get_by_id_device(dId)
         hardware_device = HardwareController.get_by_id_device(dId)
-
-        device = {
+        ospf_table = OSPFController.get_by_id_device(dId)
+        data = {
             "device": {
-                "information": {
+                "general": {
                     "device_information": device,
                     "software": software_device,
                     "hardware": hardware_device,
@@ -119,6 +120,7 @@ class DevicesController:
                 "interfaces": interfaces,
                 "arp_table": arp_table,
                 "cdp_neighbors": cdp_neighbors,
+                "ospf": ospf_table,
             },
         }
-        return device
+        return data
