@@ -87,10 +87,11 @@ class DevicesController:
     @staticmethod
     def create_report_device(dId):
         from controllers.arp_controller import ArpController
+        from controllers.cdp_controller import CdpController
         # Obtiene el resultado de la consulta
         device = DevicesController.get_by_id(dId)
         interfaces = InterfacesController.get_by_id_device(dId)
         arp_table = ArpController.get_by_id_device(dId)
-
-        return arp_table
+        cdp_neighbors = CdpController.get_by_id_device(dId)
+        return cdp_neighbors
 
