@@ -79,7 +79,6 @@ class OSPFController:
         if gns3_data.get("status") == "Error executing curl command":
             abort(400, description=gns3_data.get("error", "Error connecting to GNS3"))
 
-        insert_ospf_entries(gns3_data, id_device)
         return Utils.build_success_response_create
 
     @staticmethod
@@ -109,9 +108,8 @@ def insert_ospf_entries(gns3_data, device_id):
         # Inserta el OSPF en la tabla ospf_table
         ospf_table_data = {
             "device_id": device_id,
-            "ospf_process_id": ospf_process_id,
+            "ospf_process": int(ospf_process_id) + 1,
         }
-
         # Llama al modelo para insertar el OSPF principal
         OspfModelSQL.create_ospf_table_entry(ospf_table_data)
 
