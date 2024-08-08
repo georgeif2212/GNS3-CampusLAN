@@ -3,36 +3,49 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Network Report</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network Inventory</title>
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/inventory.css') }}">
 </head>
 
 <body>
-    <h1>Network Report</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Hostname</th>
-                <th>Model</th>
-                <th>Software version</th>
-                <th>Serial number</th>
-                <th>Register date</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for device in devices %}
-            <tr>
-                <td>{{ device.id_device }}</td>
-                <td>{{ device.hostname }}</td>
-                <td>{{ device.model }}</td>
-                <td>{{ device.software_version }}</td>
-                <td>{{ device.serial_number }}</td>
-                <td>{{ device.datetime }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <header>
+        <h1 class="main-title">Network Reporting Dashboard</h1>
+    </header>
+
+    <main>
+        <section class="inventory-section">
+            <h2 class="section-title">Inventario de Dispositivos</h2>
+            <table class="inventory-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Hostname</th>
+                        <th>Modelo</th>
+                        <th>Versión de Software</th>
+                        <th>Número de Serie</th>
+                        <th>Fecha de Registro</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for device in devices %}
+                    <tr>
+                        <td>{{ device.id_device }}</td>
+                        <td>{{ device.hostname }}</td>
+                        <td>{{ device.model }}</td>
+                        <td>{{ device.software_version }}</td>
+                        <td>{{ device.serial_number }}</td>
+                        <td>{{ device.datetime }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>Generated on {{ current_date }} by Network Reporting System</p>
+    </footer>
 </body>
 
 </html>
