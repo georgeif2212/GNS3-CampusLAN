@@ -109,13 +109,13 @@ class OspfModelSQL:
 
     @staticmethod
     def create_ospf_table_entry(ospf_table_data):
-        query = "INSERT INTO ospf_table (device_id, ospf_process_id) VALUES (?, ?)"
+        query = "INSERT INTO ospf_table (device_id, ospf_process) VALUES (?, ?)"
         try:
             db_cursor.execute(
                 query,
                 (
                     ospf_table_data["device_id"],
-                    ospf_table_data["ospf_process_id"],
+                    ospf_table_data["ospf_process"],
                 ),
             )
             db_connection.commit()  # Asegúrate de usar db_connection.commit()
@@ -123,6 +123,7 @@ class OspfModelSQL:
             # Obtener el número de filas afectadas
             rows_affected = db_cursor.rowcount
 
+            
             if rows_affected > 0:
                 print("Successful insertion")
                 return build_success_response_create
