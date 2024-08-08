@@ -30,7 +30,8 @@ class CdpModelSQL:
                     neighbor_ip_address,
                     platform,
                     software_version
-                FROM cdp_neighbors WHERE id_device = ?"""
+                FROM cdp_neighbors WHERE id_device = ?
+                ORDER BY neighbor_device_name"""
         db_cursor.execute(query, (dId,))
         result = db_cursor.fetchall()
         column_description = db_cursor.description
