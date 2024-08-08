@@ -14,6 +14,24 @@ class HardwareModelSQL:
         column_description = db_cursor.description
 
         return result, column_description
+    
+    @staticmethod
+    def get_by_id_device(dId):
+        query = """SELECT 
+                    id_hardware
+                    hw_type,
+                    hw_dev_index,
+                    version,
+                    part_number,
+                    serial_number,
+                    hw_description
+                FROM hardware WHERE id_device = ?
+                ORDER BY hw_dev_index"""
+        db_cursor.execute(query, (dId,))
+        result = db_cursor.fetchall()
+        column_description = db_cursor.description
+
+        return result, column_description
 
     @staticmethod
     def create(data):

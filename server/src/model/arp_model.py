@@ -17,16 +17,8 @@ class ArpModelSQL:
     
     @staticmethod
     def get_by_id_device(dId):
-        query = """SELECT arp_mode,
-                        datetime,
-                        encryption_type,
-                        hardware_type,
-                        id_arp,
-                        interface_name,
-                        ip_address,
-                        link_type
-                        mac_address
-                    FROM arp WHERE id_device = ?"""
+        query = """SELECT *
+                    FROM arp WHERE id_device = ? ORDER BY interface_name"""
         db_cursor.execute(query, (dId,))
         result = db_cursor.fetchall()
         column_description = db_cursor.description

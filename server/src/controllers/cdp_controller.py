@@ -1,12 +1,9 @@
 from model.cdp_model import CdpModelSQL
 from controllers.devices_controller import DevicesController
 from controllers.interfaces_controller import InterfacesController
-from utils.utils import (
-    query_to_GNS3,
-    build_success_response_create,
-    is_valid_uuid,
-)
+import utils.utils as Utils
 from flask import abort
+import utils.CustomError as CustomError
 
 
 class CdpController:
@@ -31,6 +28,18 @@ class CdpController:
     async def get_by_id(aId):
         pass
 
+    @staticmethod
+    def get_by_id_device(dId):
+        result, column_description = CdpModelSQL.get_by_id_device(dId)
+        if not result:
+            raise CustomError(
+                name="No CDP neighbors Found",
+                cause=f"No cdp_table found for device ID {dId}",
+                message=f"No cdp_table found for device ID {dId}",
+                code=404
+            )
+        return Utils.convert_data_into_dict(result,column_description)
+
 
     @staticmethod
     def create(request, endpoint):
@@ -38,7 +47,7 @@ class CdpController:
         if not id_device:
             abort(400, description="missing UUID")
 
-        if not is_valid_uuid(id_device):
+        if not Utils.is_valid_uuid(id_device):
             abort(400, description="invalid UUID Format")
 
         device = DevicesController.get_by_id(id_device)
@@ -52,13 +61,13 @@ class CdpController:
         print(f"ip Address: {ip_address_from_device}")
 
 
-        gns3_data = query_to_GNS3(ip_address_from_device, endpoint)
+        gns3_data = Utils.query_to_GNS3(ip_address_from_device, endpoint)
 
         if gns3_data.get("status") == "Error executing curl command":
             abort(400, description=gns3_data.get("error", "Error connecting to GNS3"))
     
         insert_cdp_entries(gns3_data, id_device)
-        return build_success_response_create
+        return Utils.build_success_response_create
 
 
     @staticmethod

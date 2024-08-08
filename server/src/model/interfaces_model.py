@@ -23,8 +23,10 @@ class InterfaceModelSQL:
     @staticmethod
     def get_by_id_device(dId):
         query = """SELECT 
-                    id_interface, interface_name, ip_address, subnet_mask, cdp_state, datetime  
-                    FROM interfaces WHERE id_device = ?"""
+                        id_interface, interface_name, ip_address, subnet_mask, cdp_state, datetime  
+                    FROM interfaces 
+                        WHERE id_device = ?
+                    ORDER BY interface_name"""
         db_cursor.execute(query, (dId,))
         result = db_cursor.fetchall()
         column_description = db_cursor.description
