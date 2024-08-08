@@ -3,159 +3,193 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Device Information</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/base.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/report_by_device.css') }}">
 </head>
 
 <body>
-    <h1>Device Information</h1>
+    <header>
+        <h1 class="main-title">Network Reporting Dashboard</h1>
+    </header>
 
-    <h2>ARP Table</h2>
-    <table>
-        <tr>
-            <th>ARP Mode</th>
-            <th>DateTime</th>
-            <th>Encryption Type</th>
-            <th>Hardware Type</th>
-            <th>ID ARP</th>
-            <th>Interface Name</th>
-            <th>IP Address</th>
-            <th>MAC Address</th>
-        </tr>
-        {% for entry in data.device.arp_table %}
-        <tr>
-            <td>{{ entry.arp_mode }}</td>
-            <td>{{ entry.datetime }}</td>
-            <td>{{ entry.encryption_type }}</td>
-            <td>{{ entry.hardware_type }}</td>
-            <td>{{ entry.id_arp }}</td>
-            <td>{{ entry.interface_name }}</td>
-            <td>{{ entry.ip_address }}</td>
-            <td>{{ entry.mac_address }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+    <main>
+        <section class="device-section">
+            <h2 class="section-title">Device: {{data.device.general.device_information.hostname}}</h2>
+            <h3 class="section-subtitle">General Information</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Hostname</th>
+                    <th>Model</th>
+                    <th>Serial Number</th>
+                    <th>Software Version</th>
+                    <th>DateTime</th>
+                </tr>
+                <tr>
+                    <td>{{ data.device.general.device_information.hostname }}</td>
+                    <td>{{ data.device.general.device_information.model }}</td>
+                    <td>{{ data.device.general.device_information.serial_number }}</td>
+                    <td>{{ data.device.general.device_information.software_version }}</td>
+                    <td>{{ data.device.general.device_information.datetime }}</td>
+                </tr>
+            </table>
+        </section>
 
-    <h2>CDP Neighbors</h2>
-    <table>
-        <tr>
-            <th>Advertisement Version</th>
-            <th>Capability</th>
-            <th>DateTime</th>
-            <th>Duplex</th>
-            <th>ID CDP</th>
-            <th>Local Interface Name</th>
-            <th>Neighbor Device Name</th>
-            <th>Neighbor ID Device</th>
-            <th>Neighbor Interface Name</th>
-            <th>Neighbor IP Address</th>
-            <th>Platform</th>
-            <th>Software Version</th>
-        </tr>
-        {% for neighbor in data.device.cdp_neighbors %}
-        <tr>
-            <td>{{ neighbor.advertisement_version }}</td>
-            <td>{{ neighbor.capability }}</td>
-            <td>{{ neighbor.datetime }}</td>
-            <td>{{ neighbor.duplex }}</td>
-            <td>{{ neighbor.id_cdp }}</td>
-            <td>{{ neighbor.local_interface_name }}</td>
-            <td>{{ neighbor.neighbor_device_name }}</td>
-            <td>{{ neighbor.neighbor_id_device }}</td>
-            <td>{{ neighbor.neighbor_interface_name }}</td>
-            <td>{{ neighbor.neighbor_ip_address }}</td>
-            <td>{{ neighbor.platform }}</td>
-            <td>{{ neighbor.software_version }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <section class="hardware-section">
+            <h3 class="section-subtitle">Hardware Details</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Description</th>
+                    <th>Device Index</th>
+                    <th>Type</th>
+                    <th>Part Number</th>
+                    <th>Serial Number</th>
+                    <th>Version</th>
+                </tr>
+                {% for hardware in data.device.general.hardware %}
+                <tr>
+                    <td>{{ hardware.hw_description }}</td>
+                    <td>{{ hardware.hw_dev_index }}</td>
+                    <td>{{ hardware.hw_type }}</td>
+                    <td>{{ hardware.part_number }}</td>
+                    <td>{{ hardware.serial_number }}</td>
+                    <td>{{ hardware.version }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
 
-    <h2>General Information</h2>
-    <h3>Device Information</h3>
-    <ul>
-        <li>Hostname: {{ data.device.general.device_information.hostname }}</li>
-        <li>Model: {{ data.device.general.device_information.model }}</li>
-        <li>Serial Number: {{ data.device.general.device_information.serial_number }}</li>
-        <li>Software Version: {{ data.device.general.device_information.software_version }}</li>
-        <li>DateTime: {{ data.device.general.device_information.datetime }}</li>
-    </ul>
+        <section class="software-section">
+            <h3 class="section-subtitle">Software Information</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Attribute</th>
+                    <th>Value</th>
+                </tr>
+                <tr>
+                    <td>Boot Time</td>
+                    <td>{{ data.device.general.software[0].boot_time }}</td>
+                </tr>
+                <tr>
+                    <td>Current Time</td>
+                    <td>{{ data.device.general.software[0].current_time_device }}</td>
+                </tr>
+                <tr>
+                    <td>Last Reboot Reason</td>
+                    <td>{{ data.device.general.software[0].last_reboot_reason }}</td>
+                </tr>
+                <tr>
+                    <td>ROMMON Version</td>
+                    <td>{{ data.device.general.software[0].rommon_version }}</td>
+                </tr>
+                <tr>
+                    <td>Software Version</td>
+                    <td>{{ data.device.general.software[0].software_version }}</td>
+                </tr>
+            </table>
+        </section>
 
-    <h3>Hardware</h3>
-    <table>
-        <tr>
-            <th>Description</th>
-            <th>Device Index</th>
-            <th>Type</th>
-            <th>Part Number</th>
-            <th>Serial Number</th>
-            <th>Version</th>
-        </tr>
-        {% for hardware in data.device.general.hardware %}
-        <tr>
-            <td>{{ hardware.hw_description }}</td>
-            <td>{{ hardware.hw_dev_index }}</td>
-            <td>{{ hardware.hw_type }}</td>
-            <td>{{ hardware.part_number }}</td>
-            <td>{{ hardware.serial_number }}</td>
-            <td>{{ hardware.version }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+        <section class="interfaces-section">
+            <h3 class="section-subtitle">Network Interfaces</h3>
+            <table class="info-table">
+                <tr>
+                    <th>Interface Name</th>
+                    <th>IP Address</th>
+                    <th>Subnet Mask</th>
+                    <th>CDP State</th>
+                    <th>DateTime</th>
+                </tr>
+                {% for interface in data.device.interfaces %}
+                <tr>
+                    <td>{{ interface.interface_name }}</td>
+                    <td>{{ interface.ip_address }}</td>
+                    <td>{{ interface.subnet_mask }}</td>
+                    <td>{{ interface.cdp_state }}</td>
+                    <td>{{ interface.datetime }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </section>
 
-    <h3>Software</h3>
-    <ul>
-        <li>Boot Time: {{ data.device.general.software[0].boot_time }}</li>
-        <li>Current Time: {{ data.device.general.software[0].current_time_device }}</li>
-        <li>Last Reboot Reason: {{ data.device.general.software[0].last_reboot_reason }}</li>
-        <li>ROMMON Version: {{ data.device.general.software[0].rommon_version }}</li>
-        <li>Software Version: {{ data.device.general.software[0].software_version }}</li>
-    </ul>
+        <section class="protocols-section">
+            <h2 class="section-title">Protocols</h2>
 
-    <h2>Interfaces</h2>
-    <table>
-        <tr>
-            <th>CDP State</th>
-            <th>DateTime</th>
-            <th>ID Interface</th>
-            <th>Interface Name</th>
-            <th>IP Address</th>
-            <th>Subnet Mask</th>
-        </tr>
-        {% for interface in data.device.interfaces %}
-        <tr>
-            <td>{{ interface.cdp_state }}</td>
-            <td>{{ interface.datetime }}</td>
-            <td>{{ interface.id_interface }}</td>
-            <td>{{ interface.interface_name }}</td>
-            <td>{{ interface.ip_address }}</td>
-            <td>{{ interface.subnet_mask }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            <article class="protocol-details">
+                <h3 class="section-subtitle">ARP Table</h3>
+                <table class="info-table">
+                    <tr>
+                        <th>Interface Name</th>
+                        <th>MAC Address</th>
+                        <th>IP Address</th>
+                        <th>ARP Mode</th>
+                        <th>DateTime</th>
+                    </tr>
+                    {% for entry in data.device.arp_table %}
+                    <tr>
+                        <td>{{ entry.interface_name }}</td>
+                        <td>{{ entry.mac_address }}</td>
+                        <td>{{ entry.ip_address }}</td>
+                        <td>{{ entry.arp_mode }}</td>
+                        <td>{{ entry.datetime }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </article>
 
-    <h2>OSPF Networks</h2>
-    <table>
-        <tr>
-            <th>Area</th>
-            <th>DateTime</th>
-            <th>ID Device</th>
-            <th>Mask</th>
-            <th>Network IP Address</th>
-            <th>OSPF Network ID</th>
-            <th>OSPF Process ID</th>
-        </tr>
-        {% for network in data.device.ospf.ospf_networks %}
-        <tr>
-            <td>{{ network.area }}</td>
-            <td>{{ network.datetime }}</td>
-            <td>{{ network.id_device }}</td>
-            <td>{{ network.mask }}</td>
-            <td>{{ network.network_ip_address }}</td>
-            <td>{{ network.ospf_network_id }}</td>
-            <td>{{ network.ospf_process_id }}</td>
-        </tr>
-        {% endfor %}
-    </table>
+            <article class="protocol-details">
+                <h3 class="section-subtitle">CDP Neighbors</h3>
+                <table class="info-table">
+                    <tr>
+                        <th>Neighbor Device Name</th>
+                        <th>Neighbor Interface Name</th>
+                        <th>Neighbor IP Address</th>
+                        <th>Local Interface Name</th>
+                        <th>DateTime</th>
+                        <th>Platform</th>
+                        <th>Software Version</th>
+                    </tr>
+                    {% for neighbor in data.device.cdp_neighbors %}
+                    <tr>
+                        <td>{{ neighbor.neighbor_device_name }}</td>
+                        <td>{{ neighbor.neighbor_interface_name }}</td>
+                        <td>{{ neighbor.neighbor_ip_address }}</td>
+                        <td>{{ neighbor.local_interface_name }}</td>
+                        <td>{{ neighbor.datetime }}</td>
+                        <td>{{ neighbor.platform }}</td>
+                        <td>{{ neighbor.software_version }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </article>
+
+            <article class="protocol-details">
+                <h3 class="section-subtitle">OSPF Networks</h3>
+                <table class="info-table">
+                    <tr>
+                        <th>OSPF Process ID</th>
+                        <th>Area</th>
+                        <th>Network IP Address</th>
+                        <th>Mask</th>
+                        <th>DateTime</th>
+                    </tr>
+                    {% for network in data.device.ospf.ospf_networks %}
+                    <tr>
+                        <td>{{ network.ospf_process_id }}</td>
+                        <td>{{ network.area }}</td>
+                        <td>{{ network.network_ip_address }}</td>
+                        <td>{{ network.mask }}</td>
+                        <td>{{ network.datetime }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <p>Generated on {{ current_date }} by Network Reporting System</p>
+    </footer>
 </body>
 
 </html>
