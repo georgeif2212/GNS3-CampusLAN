@@ -1,60 +1,75 @@
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    font-family: "Oswald", sans-serif;
-    letter-spacing: 0.07em;
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  margin: 0;
+  padding: 0;
 }
 
-p,
-span {
-    font-family: "Roboto", sans-serif;
-    letter-spacing: 0.03em;
+header {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px 0;
+  text-align: center;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.main-title {
+  margin: 0;
+  font-size: 2.5rem;
 }
 
-a {
-    color: inherit;
-    /* blue colors for links too */
-    text-decoration: inherit;
-    /* no underline */
+main {
+  margin: 20px;
 }
 
-ol,
-ul {
-    list-style: none;
-    padding: 0%;
+.section-title,
+.section-subtitle {
+  color: #4CAF50;
+  border-bottom: 2px solid #4CAF50;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
 }
 
-
-a {
-    text-decoration: none;
+.device-section,
+.hardware-section,
+.software-section,
+.interfaces-section,
+.protocols-section {
+  margin-bottom: 40px;
 }
 
-svg {
-    stroke: none;
-}
-
-table {
+.info-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 20px;
 }
 
-table,
-th,
-td {
-  border: 1px solid black;
-}
-
-th,
-td {
+.info-table th,
+.info-table td {
+  border: 1px solid #ddd;
   padding: 8px;
   text-align: left;
+}
+
+.info-table th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.info-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.info-table tr:hover {
+  background-color: #ddd;
+}
+
+footer {
+  background-color: #4CAF50;
+  color: white;
+  text-align: center;
+  padding: 10px 0;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
 }
