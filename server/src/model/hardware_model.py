@@ -25,7 +25,8 @@ class HardwareModelSQL:
                     part_number,
                     serial_number,
                     hw_description
-                FROM hardware WHERE id_device = ?"""
+                FROM hardware WHERE id_device = ?
+                ORDER BY hw_dev_index"""
         db_cursor.execute(query, (dId,))
         result = db_cursor.fetchall()
         column_description = db_cursor.description
