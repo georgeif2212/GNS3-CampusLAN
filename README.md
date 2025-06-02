@@ -1,126 +1,121 @@
 # Network Reporting System
 
-## Descripción breve / propósito del proyecto
-Este proyecto es una aplicación web diseñada para analizar y monitorear una red empresarial CAMPUS LAN de tres capas (acceso, distribución y núcleo) emulada en GNS3. Proporciona una interfaz para recopilar, analizar y visualizar información de dispositivos de red, incluyendo detalles de interfaces, tablas ARP, protocolos de enrutamiento (OSPF), información de hardware y software, y descubrimiento de vecinos CDP.
+## Brief Description / Project Purpose
+This web application is designed to analyze and monitor a three-tier CAMPUS LAN enterprise network (access, distribution, and core) emulated in GNS3. It provides an interface to collect, analyze, and visualize network device information, including interface details, ARP tables, routing protocols (OSPF), hardware and software information, and CDP neighbor discovery.
 
-### Topología de Red
-![Diagrama de la topología de red](topology/original/extras/images/Topology.jpeg)
-*Topología CAMPUS LAN de tres capas implementada en el proyecto*
+### Network Topology
+![Network topology diagram](topology/original/extras/images/Topology.jpeg)
+*Three-tier CAMPUS LAN topology implemented in the project*
 
-## Tabla de Contenidos
-- [Tecnologías Usadas](#tecnologías-usadas)
-- [Estructura del Proyecto](#estructura-del-proyecto)
-- [Configuración](#configuración)
-- [Flujo de Datos](#flujo-de-datos)
-- [Resultados Esperados](#resultados-esperados)
-- [Capturas de Pantalla](#capturas-de-pantalla)
-- [Pruebas](#pruebas)
-- [To-Do / Mejoras Futuras](#to-do--mejoras-futuras)
-- [Autor](#autor)
+## Table of Contents
+- [Technologies Used](#technologies-used)
+- [Project Structure](#project-structure)
+- [Configuration](#configuration)
+- [Data Flow](#data-flow)
+- [Expected Results](#expected-results)
+- [Screenshots](#screenshots)
+- [To-Do / Future Improvements](#to-do--future-improvements)
+- [Author](#author)
 
-## Tecnologías Usadas
+## Technologies Used
 - **Backend:**
   - Python 3.x
-  - Flask (Framework web)
-  - SQLServer (Base de datos)
-- **APIs y Protocolos:**
+  - Flask (Web Framework)
+  - SQLServer (Database)
+- **APIs and Protocols:**
   - RESTCONF
   - YANG data models
   - CDP (Cisco Discovery Protocol)
   - OSPF
-- **Herramientas de Red:**
+- **Network Tools:**
   - GNS3
   - Cisco IOS XE
-- **Otros:**
-  - JSON para intercambio de datos
-  - Algoritmo BFS para descubrimiento de topología
+- **Others:**
+  - JSON for data exchange
+  - BFS Algorithm for topology discovery
 
-## Estructura del Proyecto
+## Project Structure
 ```
 server/
 ├── src/
-│   ├── app.py           # Aplicación principal Flask
-│   ├── bfs.py           # Algoritmo de búsqueda BFS para topología
-│   ├── controllers/     # Lógica de negocio
-│   ├── model/          # Modelos de datos
-│   ├── routers/        # Rutas de la API
-│   ├── middlewares/    # Middleware de la aplicación
-│   ├── utils/          # Funciones de utilidad
-│   ├── db/            # Configuración de base de datos
-│   ├── static/        # Archivos estáticos
-│   └── templates/     # Plantillas HTML
+│   ├── app.py           # Main Flask application
+│   ├── bfs.py           # BFS algorithm for topology
+│   ├── controllers/     # Business logic
+│   ├── model/          # Data models
+│   ├── routers/        # API routes
+│   ├── middlewares/    # Application middleware
+│   ├── utils/          # Utility functions
+│   ├── db/            # Database configuration
+│   ├── static/        # Static files
+│   └── templates/     # HTML templates
 ├── docs/
-│   ├── sql/           # Scripts SQL para la base de datos
-│   ├── topology/      # Documentación de topología
-│   └── jsons/        # Ejemplos y resultados JSON
+│   ├── sql/           # SQL database scripts
+│   ├── topology/      # Topology documentation
+│   └── jsons/        # JSON examples and results
 ```
 
+## Configuration
+1. Database Setup:
+   - SQL scripts are located in `server/docs/sql/`
+   - Execute scripts in order to create the necessary tables
 
-## Configuración
-1. Configurar la base de datos:
-   - Los scripts SQL se encuentran en `server/docs/sql/`
-   - Ejecutar los scripts en orden para crear las tablas necesarias
+## Data Flow
+1. **Network Discovery:**
+   - BFS algorithm starts from an initial device
+   - Collects ARP and neighbor information
+   - Builds topology map
 
+2. **Data Collection:**
+   - Network interfaces
+   - ARP tables
+   - CDP information
+   - OSPF configuration
+   - Hardware/software details
 
+3. **Storage:**
+   - Data is stored in SQL tables
+   - Topology results are saved in JSON
 
+## Expected Results
+- Complete network topology map
+- Detailed device information
+- Interface and protocol status
+- Device relationships (neighbors)
+- Network metrics
 
-## Flujo de Datos
-1. **Descubrimiento de Red:**
-   - El algoritmo BFS comienza desde un dispositivo inicial
-   - Recopila información ARP y de vecinos
-   - Construye un mapa de topología
+## Screenshots
 
-2. **Recopilación de Datos:**
-   - Interfaces de red
-   - Tablas ARP
-   - Información CDP
-   - Configuración OSPF
-   - Detalles de hardware/software
+The system generates various reports showing detailed network information:
 
-3. **Almacenamiento:**
-   - Los datos se almacenan en tablas SQL
-   - Los resultados de topología se guardan en JSON
+### Report 1: Network Node Overview
+![Network Overview](server/docs/reports/report1.png)
+*General view of network topology and its main connections.*
 
-## Resultados Esperados
-- Mapa de topología de red completo
-- Información detallada de dispositivos
-- Estado de interfaces y protocolos
-- Relaciones entre dispositivos (vecinos)
-- Métricas de red
+### Report 2: Device Report
+![Device Status](server/docs/reports/report2.png)
+*General information about a device and its hardware*
 
-## Capturas de Pantalla
+#### Device Software and Interface Information
+![Routing Information](server/docs/reports/report3.png)
+*Details about device software and its interfaces.*
 
-El sistema genera varios reportes que muestran información detallada sobre la red:
+#### Device ARP Table
+![Network Statistics](server/docs/reports/report4.png)
+*ARP table with physical addresses, IP, ARP type, and date*
 
-### Report 1: Vista General de los nodos de la red
-![Vista General de la Red](server/docs/reports/report1.png)
-*Vista general de la topología de red y sus conexiones principales.*
+#### CDP (Cisco Discovery Protocol) Neighbors Table
+![Device Configuration](server/docs/reports/report5.png)
+*Table with neighboring devices through CDP protocol*
 
-### Report 2: Reporte por dispositivo
-![Estado de Interfaces](server/docs/reports/report2.png)
-*Información general de un dispositivo y su hardware*
+### Report 6: OSPF Protocol Analysis
+![Protocol Analysis](server/docs/reports/report6.png)
+*Analysis of OSPF protocol in use.*
 
-#### Información del software y las interfaces del dispositivo
-![Información de Enrutamiento](server/docs/reports/report3.png)
-*Detalles sobre el software del dispositivo y sus interfaces.*
+## Data Examples
 
-#### Tabla ARP del dispositivo
-![Estadísticas de Red](server/docs/reports/report4.png)
-*Tabla ARP con direcciones físicas, IP, tipo de arp y fecha*
+The system collects detailed information from network devices through RESTCONF queries. Here are some examples of the data obtained:
 
-#### Tabla de vecinos CDP (Cisco Discovery Protocol)
-![Configuración de Dispositivos](server/docs/reports/report5.png)
-*Tabla con los dispositivos que son vecinos mediante el protocolo CDP*
-
-### Report 6: Análisis de Protocolo OSPF
-![Análisis de Protocolos](server/docs/reports/report6.png)
-*Análisis del protocolo OSPF en uso.*
-
-## Ejemplos de Datos
-
-El sistema recopila información detallada de los dispositivos de red a través de consultas RESTCONF. Aquí hay algunos ejemplos de los datos obtenidos:
-
-### Tabla ARP
+### ARP Table
 ```json
 {
     "Cisco-IOS-XE-arp-oper:arp-data": {
@@ -138,7 +133,7 @@ El sistema recopila información detallada de los dispositivos de red a través 
 }
 ```
 
-### Información de Hardware
+### Hardware Information
 ```json
 {
     "Cisco-IOS-XE-device-hardware-oper:device-hardware-data": {
@@ -159,7 +154,7 @@ El sistema recopila información detallada de los dispositivos de red a través 
 }
 ```
 
-### Configuración Native
+### Native Configuration
 ```json
 {
     "Cisco-IOS-XE-native:native": {
@@ -185,17 +180,17 @@ El sistema recopila información detallada de los dispositivos de red a través 
 }
 ```
 
-## To-Do / Mejoras Futuras
-- Implementar autenticación de usuarios
-- Agregar soporte para LLDP
-- Implementar monitoreo en tiempo real
-- Integrar con sistemas de monitoreo externos
+## To-Do / Future Improvements
+- Implement user authentication
+- Add LLDP support
+- Implement real-time monitoring
+- Integrate with external monitoring systems
 
-## Autor
+## Author
 
 **Jorge Infante Fragoso**
 
 - 💻 GitHub: [@georgeif2212](https://github.com/georgeif2212)
 - 💼 LinkedIn: [Jorge Infante - Computación](https://www.linkedin.com/in/jorgeinfante-computacion/)
-- 📧 Correo: jinfante2212@gmail.com
+- 📧 Email: jinfante2212@gmail.com
 
