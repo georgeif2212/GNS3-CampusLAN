@@ -1,4 +1,4 @@
-# GNS3-CampusLAN Network Analyzer
+# Network Reporting System
 
 ## Descripción breve / propósito del proyecto
 Este proyecto es una aplicación web diseñada para analizar y monitorear redes empresariales simuladas en GNS3. Proporciona una interfaz para recopilar, analizar y visualizar información de dispositivos de red, incluyendo detalles de interfaces, tablas ARP, protocolos de enrutamiento (OSPF), información de hardware y software, y descubrimiento de vecinos CDP.
@@ -50,7 +50,7 @@ server/
 │   ├── topology/      # Documentación de topología
 │   └── jsons/        # Ejemplos y resultados JSON
 ```
-```
+
 
 ## Configuración
 1. Configurar la base de datos:
@@ -87,16 +87,104 @@ server/
 - Métricas de red
 
 ## Capturas de Pantalla
-[Sección pendiente para agregar capturas de pantalla del sistema en funcionamiento]
 
-## Pruebas
-- Pruebas de conectividad
-- Validación de datos RESTCONF
-- Verificación de descubrimiento de topología
-- Pruebas de rendimiento de la API
+El sistema genera varios reportes que muestran información detallada sobre la red:
+
+### Report 1: Vista General de los nodos de la red
+![Vista General de la Red](server/docs/reports/report1.png)
+*Vista general de la topología de red y sus conexiones principales.*
+
+### Report 2: Reporte por dispositivo
+![Estado de Interfaces](server/docs/reports/report2.png)
+*Información general de un dispositivo y su hardware*
+
+#### Información del software y las interfaces del dispositivo
+![Información de Enrutamiento](server/docs/reports/report3.png)
+*Detalles sobre el software del dispositivo y sus interfaces.*
+
+#### Tabla ARP del dispositivo
+![Estadísticas de Red](server/docs/reports/report4.png)
+*Tabla ARP con direcciones físicas, IP, tipo de arp y fecha*
+
+#### Tabla de vecinos CDP (Cisco Discovery Protocol)
+![Configuración de Dispositivos](server/docs/reports/report5.png)
+*Tabla con los dispositivos que son vecinos mediante el protocolo CDP*
+
+### Report 6: Análisis de Protocolo OSPF
+![Análisis de Protocolos](server/docs/reports/report6.png)
+*Análisis del protocolo OSPF en uso.*
+
+## Ejemplos de Datos
+
+El sistema recopila información detallada de los dispositivos de red a través de consultas RESTCONF. Aquí hay algunos ejemplos de los datos obtenidos:
+
+### Tabla ARP
+```json
+{
+    "Cisco-IOS-XE-arp-oper:arp-data": {
+        "arp-vrf": [{
+            "vrf": "Default",
+            "arp-oper": [{
+                "address": "192.168.10.5",
+                "interface": "GigabitEthernet5",
+                "mode": "ios-arp-mode-dynamic",
+                "hardware": "0c:42:d7:e1:00:01",
+                "time": "2024-04-29T13:39:32.000615+00:00"
+            }]
+        }]
+    }
+}
+```
+
+### Información de Hardware
+```json
+{
+    "Cisco-IOS-XE-device-hardware-oper:device-hardware-data": {
+        "device-hardware": {
+            "device-inventory": [{
+                "hw-type": "hw-type-chassis",
+                "part-number": "CSR1000V",
+                "serial-number": "9D3WSC4GWGG",
+                "hw-description": "Cisco CSR1000V Chassis"
+            }],
+            "device-system-data": {
+                "current-time": "2024-04-30T15:41:02+00:00",
+                "software-version": "Cisco IOS Software [Fuji], Virtual XE Software",
+                "last-reboot-reason": "reload"
+            }
+        }
+    }
+}
+```
+
+### Configuración Native
+```json
+{
+    "Cisco-IOS-XE-native:native": {
+        "hostname": "nucleo2",
+        "username": [{
+            "name": "admin",
+            "privilege": 15
+        }],
+        "interface": {
+            "GigabitEthernet": [{
+                "name": "1",
+                "ip": {
+                    "address": {
+                        "primary": {
+                            "address": "192.168.10.34",
+                            "mask": "255.255.255.252"
+                        }
+                    }
+                }
+            }]
+        }
+    }
+}
+```
 
 ## To-Do / Mejoras Futuras
-- [ ] Implementar autenticación de usuarios
+- [x] Implementar autenticación de usuarios
 - [ ] Agregar soporte para LLDP
 - [ ] Mejorar visualización de topología
 - [ ] Implementar monitoreo en tiempo real
@@ -104,5 +192,10 @@ server/
 - [ ] Integrar con sistemas de monitoreo externos
 
 ## Autor
-[Jorge Infante Fragoso]
-[jinfante2212@gmail.com]
+
+**Jorge Infante Fragoso**
+
+- 💻 GitHub: [@georgeif2212](https://github.com/georgeif2212)
+- 💼 LinkedIn: [Jorge Infante - Computación](https://www.linkedin.com/in/jorgeinfante-computacion/)
+- 📧 Correo: jinfante2212@gmail.com
+
