@@ -1,7 +1,11 @@
 # Network Reporting System
 
 ## Descripción breve / propósito del proyecto
-Este proyecto es una aplicación web diseñada para analizar y monitorear redes empresariales simuladas en GNS3. Proporciona una interfaz para recopilar, analizar y visualizar información de dispositivos de red, incluyendo detalles de interfaces, tablas ARP, protocolos de enrutamiento (OSPF), información de hardware y software, y descubrimiento de vecinos CDP.
+Este proyecto es una aplicación web diseñada para analizar y monitorear una red empresarial CAMPUS LAN de tres capas (acceso, distribución y núcleo) emulada en GNS3. Proporciona una interfaz para recopilar, analizar y visualizar información de dispositivos de red, incluyendo detalles de interfaces, tablas ARP, protocolos de enrutamiento (OSPF), información de hardware y software, y descubrimiento de vecinos CDP.
+
+### Topología de Red
+![Diagrama de la topología de red](topology/original/extras/images/Topology.jpeg)
+*Topología CAMPUS LAN de tres capas implementada en el proyecto*
 
 ## Tabla de Contenidos
 - [Tecnologías Usadas](#tecnologías-usadas)
@@ -57,9 +61,7 @@ server/
    - Los scripts SQL se encuentran en `server/docs/sql/`
    - Ejecutar los scripts en orden para crear las tablas necesarias
 
-2. Configurar las variables de entorno:
-   - Crear un archivo `.env` en la raíz del proyecto
-   - Definir las variables necesarias (IPs, credenciales, etc.)
+
 
 
 ## Flujo de Datos
@@ -184,12 +186,10 @@ El sistema recopila información detallada de los dispositivos de red a través 
 ```
 
 ## To-Do / Mejoras Futuras
-- [x] Implementar autenticación de usuarios
-- [ ] Agregar soporte para LLDP
-- [ ] Mejorar visualización de topología
-- [ ] Implementar monitoreo en tiempo real
-- [ ] Agregar exportación de datos
-- [ ] Integrar con sistemas de monitoreo externos
+- Implementar autenticación de usuarios
+- Agregar soporte para LLDP
+- Implementar monitoreo en tiempo real
+- Integrar con sistemas de monitoreo externos
 
 ## Autor
 
